@@ -11,21 +11,23 @@
 <style>
 
 /* =========================================================
-   EDGE LINKS — CINEMATIC EDITION
+   EDGE LINKS — AURORA GLASS UI
 ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root {
-    --bg: #050505;
-    --white: #f7f7f5;
-    --muted: #8b8b89;
-    --soft: #151515;
+    --bg: #070711;
+    --card: rgba(18,18,31,.72);
+    --white: #f8f9ff;
+    --muted: #8d90a8;
 
-    --cyan: #8defff;
-    --violet: #b99cff;
+    --cyan: #55eaff;
+    --blue: #6285ff;
+    --purple: #b66cff;
+    --pink: #ff65c7;
 
-    --border: rgba(255,255,255,.085);
+    --border: rgba(255,255,255,.10);
 }
 
 
@@ -47,19 +49,6 @@ body {
 
     min-height: 100vh;
 
-    background:
-        radial-gradient(
-            ellipse 70% 45% at 50% -10%,
-            rgba(141,239,255,.09),
-            transparent 65%
-        ),
-        radial-gradient(
-            ellipse 55% 50% at 90% 45%,
-            rgba(185,156,255,.065),
-            transparent 65%
-        ),
-        #050505;
-
     color: var(--white);
 
     font-family:
@@ -67,34 +56,86 @@ body {
         sans-serif;
 
     overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle 500px at 5% 5%,
+            rgba(98,133,255,.20),
+            transparent 70%
+        ),
+        radial-gradient(
+            circle 500px at 95% 10%,
+            rgba(182,108,255,.17),
+            transparent 70%
+        ),
+        radial-gradient(
+            circle 450px at 50% 100%,
+            rgba(85,234,255,.11),
+            transparent 70%
+        ),
+        #070711;
 }
 
 
 /* =========================================================
-   FILM GRAIN
+   COLORFUL AURORA
 ========================================================= */
 
-body::after {
+body::before {
 
     content: "";
 
     position: fixed;
 
-    inset: 0;
+    width: 600px;
+    height: 600px;
+
+    left: 50%;
+    top: 30%;
+
+    transform: translate(-50%,-50%);
+
+    background:
+        conic-gradient(
+            from 90deg,
+            rgba(85,234,255,.08),
+            rgba(182,108,255,.09),
+            rgba(255,101,199,.07),
+            rgba(85,234,255,.08)
+        );
+
+    filter: blur(100px);
+
+    border-radius: 50%;
 
     pointer-events: none;
 
-    opacity: .035;
+    z-index: -1;
 
-    z-index: 9998;
+    animation:
+        auroraMove 12s ease-in-out infinite alternate;
+}
 
-    background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+
+@keyframes auroraMove {
+
+    0% {
+        transform:
+            translate(-60%,-45%)
+            scale(1);
+    }
+
+    100% {
+        transform:
+            translate(-40%,-55%)
+            scale(1.25);
+    }
+
 }
 
 
 /* =========================================================
-   LOADING SCREEN
+   LOADING
 ========================================================= */
 
 #loading-screen {
@@ -103,107 +144,120 @@ body::after {
 
     inset: 0;
 
-    z-index: 10000;
-
-    background: #050505;
+    z-index: 9999;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
+    background:
+        radial-gradient(
+            circle at center,
+            #17162c,
+            #070711 70%
+        );
+
     transition:
-        opacity .9s ease,
-        visibility .9s ease;
+        opacity .5s ease,
+        visibility .5s ease;
 }
 
 
-.loading-content {
-
-    width: 220px;
+.loading-box {
 
     text-align: center;
+
+    width: 180px;
 }
 
 
-.loading-word {
+.loading-logo {
 
     font-family:
         "Space Grotesk",
         sans-serif;
 
-    font-size: 25px;
+    font-size: 23px;
 
-    font-weight: 600;
+    font-weight: 700;
 
-    letter-spacing: -.8px;
+    letter-spacing: -1px;
 }
 
 
-.loading-word span {
+.loading-logo span {
 
     color: var(--cyan);
+
+    text-shadow:
+        0 0 18px
+        rgba(85,234,255,.7);
 }
 
 
-.loading-caption {
+.loading-text {
 
-    margin-top: 10px;
+    margin-top: 8px;
 
-    color: #626260;
+    color: #70738d;
 
-    font-size: 9px;
+    font-size: 8px;
 
-    letter-spacing: 2.5px;
+    letter-spacing: 2px;
 
     text-transform: uppercase;
 }
 
 
-.loading-track {
-
-    height: 1px;
+.loading-line {
 
     width: 100%;
 
-    margin-top: 25px;
+    height: 2px;
+
+    margin-top: 18px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
 
     background:
         rgba(255,255,255,.08);
-
-    overflow: hidden;
 }
 
 
-.loading-track span {
+.loading-line span {
 
     display: block;
 
+    width: 35%;
+
     height: 100%;
 
-    width: 30%;
+    border-radius: inherit;
 
     background:
         linear-gradient(
             90deg,
-            transparent,
             var(--cyan),
-            transparent
+            var(--purple),
+            var(--pink)
         );
 
     animation:
-        loadSlide 1.4s infinite ease-in-out;
+        loading 1.2s infinite ease-in-out;
 }
 
 
-@keyframes loadSlide {
+@keyframes loading {
 
     from {
-        transform: translateX(-150%);
+        transform: translateX(-130%);
     }
 
     to {
-        transform: translateX(450%);
+        transform: translateX(400%);
     }
 
 }
@@ -217,53 +271,91 @@ body::after {
 
     width:
         min(
-            1380px,
-            calc(100% - 40px)
+            1120px,
+            calc(100% - 28px)
         );
 
     margin: auto;
 
     padding:
-        22px
+        14px
         0
-        80px;
+        35px;
 
     opacity: 0;
 
     visibility: hidden;
 
     transition:
-        opacity 1s ease;
+        opacity .6s ease;
 }
 
 
 /* =========================================================
-   NAVIGATION
+   NAV
 ========================================================= */
 
 nav {
 
-    height: 58px;
+    height: 50px;
 
     display: flex;
 
     align-items: center;
 
     justify-content: space-between;
+
+    margin-bottom: 13px;
 }
 
 
 .logo {
 
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
     font-family:
         "Space Grotesk",
         sans-serif;
 
-    font-size: 18px;
+    font-size: 16px;
 
     font-weight: 700;
 
-    letter-spacing: -1px;
+    letter-spacing: -.7px;
+}
+
+
+.logo-mark {
+
+    width: 27px;
+    height: 27px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--cyan),
+            var(--blue),
+            var(--purple)
+        );
+
+    color: #05050a;
+
+    font-size: 11px;
+
+    box-shadow:
+        0 0 22px
+        rgba(85,234,255,.20);
 }
 
 
@@ -279,212 +371,11 @@ nav {
 
     align-items: center;
 
-    gap: 10px;
+    gap: 8px;
 }
 
 
-.nav-status {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 7px;
-
-    color: #737371;
-
-    font-size: 9px;
-
-    letter-spacing: 1px;
-
-    text-transform: uppercase;
-}
-
-
-.status-dot {
-
-    width: 5px;
-    height: 5px;
-
-    border-radius: 50%;
-
-    background: #78e6a5;
-
-    box-shadow:
-        0 0 9px #78e6a5;
-}
-
-
-.telegram-nav {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    width: 35px;
-    height: 35px;
-
-    border-radius: 50%;
-
-    border:
-        1px solid var(--border);
-
-    background:
-        rgba(255,255,255,.025);
-
-    transition:
-        .25s ease;
-}
-
-
-.telegram-nav:hover {
-
-    background:
-        rgba(255,255,255,.08);
-
-    transform:
-        translateY(-2px);
-}
-
-
-.telegram-nav img {
-
-    width: 16px;
-    height: 16px;
-
-    object-fit: contain;
-}
-
-
-/* =========================================================
-   PLAYER STAGE
-========================================================= */
-
-.player-stage {
-
-    position: relative;
-
-    padding:
-        12px;
-
-    border-radius: 30px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.08),
-            rgba(255,255,255,.018)
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.09);
-
-    box-shadow:
-        0 50px 140px
-        rgba(0,0,0,.65);
-}
-
-
-.player-stage::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 50%;
-    height: 80%;
-
-    left: 25%;
-    top: 10%;
-
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(141,239,255,.08),
-            transparent 65%
-        );
-
-    filter: blur(40px);
-
-    pointer-events: none;
-}
-
-
-.player-inner {
-
-    position: relative;
-
-    overflow: hidden;
-
-    border-radius: 21px;
-
-    background: #000;
-}
-
-
-/* =========================================================
-   PLAYER FLOATING BAR
-========================================================= */
-
-.player-floating {
-
-    position: absolute;
-
-    left: 20px;
-    right: 20px;
-    top: 18px;
-
-    z-index: 5;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    pointer-events: none;
-}
-
-
-.floating-name {
-
-    max-width: 55%;
-
-    padding:
-        9px
-        13px;
-
-    border-radius: 50px;
-
-    background:
-        rgba(0,0,0,.5);
-
-    border:
-        1px solid
-        rgba(255,255,255,.12);
-
-    backdrop-filter:
-        blur(15px);
-
-    -webkit-backdrop-filter:
-        blur(15px);
-
-    color: #eee;
-
-    font-size: 9px;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-}
-
-
-.floating-live {
+.online {
 
     display: flex;
 
@@ -493,46 +384,130 @@ nav {
     gap: 6px;
 
     padding:
-        8px
-        11px;
+        6px
+        9px;
 
-    border-radius: 50px;
+    border-radius: 30px;
 
     background:
-        rgba(0,0,0,.5);
+        rgba(255,255,255,.045);
 
     border:
-        1px solid
-        rgba(255,255,255,.12);
+        1px solid var(--border);
 
-    backdrop-filter:
-        blur(15px);
-
-    color: #eee;
+    color: #9295aa;
 
     font-size: 8px;
 
-    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    letter-spacing: .7px;
 }
 
 
-.floating-live span {
+.online-dot {
 
     width: 5px;
     height: 5px;
 
     border-radius: 50%;
 
-    background: #ff6172;
+    background: #65f7ad;
 
     box-shadow:
-        0 0 8px #ff6172;
+        0 0 9px #65f7ad;
+}
+
+
+.telegram-nav {
+
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(85,234,255,.13),
+            rgba(98,133,255,.13)
+        );
+
+    border:
+        1px solid var(--border);
+
+    transition: .2s ease;
+}
+
+
+.telegram-nav:hover {
+
+    transform:
+        translateY(-2px)
+        scale(1.04);
+
+    border-color:
+        rgba(85,234,255,.35);
+}
+
+
+.telegram-nav img {
+
+    width: 15px;
+    height: 15px;
+
+    object-fit: contain;
 }
 
 
 /* =========================================================
-   VIDEO
+   PLAYER WRAPPER
 ========================================================= */
+
+.player-shell {
+
+    position: relative;
+
+    padding: 5px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(85,234,255,.22),
+            rgba(98,133,255,.13),
+            rgba(182,108,255,.22)
+        );
+
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,.40),
+        0 0 70px
+        rgba(98,133,255,.08);
+}
+
+
+/* =========================================================
+   PLAYER
+========================================================= */
+
+.player {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background: #030306;
+}
+
 
 #portalDisplay {
 
@@ -540,11 +515,16 @@ nav {
 
     width: 100%;
 
-    aspect-ratio: 16 / 9;
-
-    background: #000;
+    aspect-ratio: 16 / 8.7;
 
     overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #17172a,
+            #030306 70%
+        );
 }
 
 
@@ -558,6 +538,133 @@ nav {
     border: 0;
 
     background: #000;
+}
+
+
+/* =========================================================
+   PLAYER TOP BAR
+========================================================= */
+
+.player-top {
+
+    position: absolute;
+
+    left: 12px;
+    right: 12px;
+    top: 12px;
+
+    z-index: 5;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    pointer-events: none;
+}
+
+
+.stream-pill {
+
+    max-width: 65%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding:
+        7px
+        10px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(4,4,10,.55);
+
+    border:
+        1px solid
+        rgba(255,255,255,.11);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+
+    color: #e9eaf4;
+
+    font-size: 8px;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+
+.stream-dot {
+
+    flex-shrink: 0;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: var(--cyan);
+
+    box-shadow:
+        0 0 9px var(--cyan);
+}
+
+
+.live-pill {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding:
+        7px
+        9px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(4,4,10,.55);
+
+    border:
+        1px solid
+        rgba(255,255,255,.11);
+
+    backdrop-filter:
+        blur(14px);
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+
+    color: #f2f3f8;
+}
+
+
+.live-pill span {
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #ff617c;
+
+    box-shadow:
+        0 0 8px #ff617c;
 }
 
 
@@ -578,75 +685,76 @@ nav {
     align-items: center;
     justify-content: center;
 
-    background:
-        radial-gradient(
-            circle at center,
-            #111,
-            #000 65%
-        );
-
     text-align: center;
 }
 
 
-.play-orb {
+.play-button {
 
-    width: 72px;
-    height: 72px;
-
-    border-radius: 50%;
+    width: 61px;
+    height: 61px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
+    border-radius: 50%;
+
     background:
-        rgba(255,255,255,.035);
+        linear-gradient(
+            135deg,
+            rgba(85,234,255,.16),
+            rgba(182,108,255,.17)
+        );
 
     border:
         1px solid
-        rgba(255,255,255,.13);
+        rgba(255,255,255,.17);
 
     box-shadow:
-        0 0 50px
-        rgba(141,239,255,.08);
-
-    margin-bottom: 20px;
+        0 0 35px
+        rgba(85,234,255,.12);
 
     animation:
-        orbFloat 2.5s infinite ease-in-out;
+        playFloat 2.5s ease-in-out infinite;
 }
 
 
-.play-orb::after {
+.play-button::after {
 
     content: "";
+
+    margin-left: 3px;
 
     width: 0;
     height: 0;
 
     border-top:
-        7px solid transparent;
+        8px solid transparent;
 
     border-bottom:
-        7px solid transparent;
+        8px solid transparent;
 
     border-left:
-        10px solid var(--cyan);
+        12px solid var(--cyan);
 
-    margin-left: 3px;
+    filter:
+        drop-shadow(
+            0 0 6px
+            rgba(85,234,255,.8)
+        );
 }
 
 
-@keyframes orbFloat {
+@keyframes playFloat {
 
     0%,100% {
         transform: translateY(0);
     }
 
     50% {
-        transform: translateY(-6px);
+        transform: translateY(-5px);
     }
 
 }
@@ -654,60 +762,62 @@ nav {
 
 .wait-title {
 
+    margin-top: 15px;
+
     font-family:
         "Space Grotesk",
         sans-serif;
 
-    font-size: 16px;
+    font-size: 14px;
 
-    font-weight: 500;
+    font-weight: 600;
 }
 
 
 .wait-sub {
 
-    color: #656562;
+    margin-top: 5px;
 
-    font-size: 10px;
+    color: #6d7088;
 
-    margin-top: 8px;
+    font-size: 8px;
 }
 
 
 /* =========================================================
-   BELOW PLAYER
+   STREAM INFORMATION
 ========================================================= */
 
-.player-details {
-
-    padding:
-        25px
-        5px
-        5px;
+.stream-info {
 
     display: flex;
 
-    align-items: flex-end;
+    align-items: center;
 
     justify-content: space-between;
 
-    gap: 20px;
+    gap: 15px;
+
+    padding:
+        13px
+        4px
+        2px;
 }
 
 
-.details-left {
+.stream-meta {
 
     min-width: 0;
 }
 
 
-.details-label {
+.meta-label {
 
-    color: #5f5f5d;
+    color: #65687e;
 
-    font-size: 8px;
+    font-size: 7px;
 
-    letter-spacing: 2px;
+    letter-spacing: 1.4px;
 
     text-transform: uppercase;
 }
@@ -715,15 +825,17 @@ nav {
 
 #streamLabel {
 
-    margin-top: 7px;
+    margin-top: 4px;
 
     font-family:
         "Space Grotesk",
         sans-serif;
 
-    font-size: 21px;
+    font-size: 18px;
 
-    font-weight: 500;
+    font-weight: 600;
+
+    letter-spacing: -.4px;
 
     white-space: nowrap;
 
@@ -733,296 +845,364 @@ nav {
 }
 
 
-.details-description {
+.meta-sub {
 
-    margin-top: 7px;
+    margin-top: 3px;
 
-    color: #656562;
+    color: #686b81;
 
-    font-size: 10px;
+    font-size: 8px;
 }
 
 
-.player-actions {
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.actions {
 
     display: flex;
 
-    gap: 8px;
+    gap: 6px;
+
+    flex-shrink: 0;
 }
 
 
 .action {
 
-    height: 38px;
-
-    padding:
-        0
-        15px;
+    height: 33px;
 
     display: flex;
 
     align-items: center;
+    justify-content: center;
 
-    gap: 8px;
+    gap: 6px;
 
-    border-radius: 50px;
+    padding:
+        0
+        12px;
 
-    color: #b9b9b6;
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    color: #c7c9d6;
 
     background:
-        #111;
+        rgba(255,255,255,.045);
 
     border:
         1px solid var(--border);
 
-    text-decoration: none;
-
-    font-size: 9px;
+    font-size: 8px;
 
     font-weight: 600;
 
-    transition:
-        .25s ease;
+    transition: .2s ease;
 }
 
 
 .action:hover {
 
-    background: #181818;
-
-    color: #fff;
-
     transform:
         translateY(-2px);
+
+    background:
+        rgba(255,255,255,.08);
+
+    color: #fff;
 }
 
 
 .action.primary {
 
-    color: #030606;
+    color: #04070b;
+
+    border: 0;
 
     background:
         linear-gradient(
-            110deg,
+            100deg,
             var(--cyan),
-            #b8f6ff
+            #7cb8ff,
+            var(--purple)
         );
 
-    border: 0;
+    box-shadow:
+        0 5px 20px
+        rgba(98,133,255,.18);
 }
 
 
-.action.primary img {
+.action img {
 
-    width: 15px;
-    height: 15px;
-}
-
-
-/* =========================================================
-   FEATURES
-========================================================= */
-
-.features {
-
-    display: grid;
-
-    grid-template-columns:
-        1.2fr
-        .8fr
-        .8fr;
-
-    gap: 12px;
-
-    margin-top: 70px;
-}
-
-
-.feature {
-
-    min-height: 170px;
-
-    padding: 24px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,.12);
-
-    position: relative;
-}
-
-
-.feature-number {
-
-    color: #444440;
-
-    font-family:
-        "Space Grotesk",
-        sans-serif;
-
-    font-size: 11px;
-
-    margin-bottom: 55px;
-}
-
-
-.feature h3 {
-
-    font-family:
-        "Space Grotesk",
-        sans-serif;
-
-    font-size: 17px;
-
-    font-weight: 500;
-}
-
-
-.feature p {
-
-    margin-top: 8px;
-
-    color: #656562;
-
-    font-size: 10px;
-
-    line-height: 1.7;
-}
-
-
-.feature:first-child {
-
-    background:
-        radial-gradient(
-            ellipse at bottom left,
-            rgba(141,239,255,.055),
-            transparent 65%
-        );
-}
-
-
-/* =========================================================
-   TELEGRAM COMMUNITY
-========================================================= */
-
-.community {
-
-    margin-top: 80px;
-
-    padding:
-        60px
-        30px;
-
-    text-align: center;
-
-    border-radius: 28px;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(141,239,255,.075),
-            transparent 65%
-        ),
-        #0b0b0b;
-
-    border:
-        1px solid
-        rgba(255,255,255,.07);
-}
-
-
-.community-small {
-
-    color: #686864;
-
-    font-size: 8px;
-
-    letter-spacing: 3px;
-
-    text-transform: uppercase;
-}
-
-
-.community h2 {
-
-    margin-top: 13px;
-
-    font-family:
-        "Space Grotesk",
-        sans-serif;
-
-    font-size:
-        clamp(25px,5vw,42px);
-
-    font-weight: 500;
-
-    letter-spacing: -1.5px;
-}
-
-
-.community p {
-
-    max-width: 420px;
-
-    margin:
-        14px
-        auto
-        25px;
-
-    color: #6c6c69;
-
-    font-size: 11px;
-
-    line-height: 1.7;
-}
-
-
-.community-button {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 9px;
-
-    padding:
-        12px
-        19px;
-
-    border-radius: 50px;
-
-    color: #050505;
-
-    background: #f5f5f2;
-
-    text-decoration: none;
-
-    font-size: 10px;
-
-    font-weight: 700;
-
-    transition:
-        .25s ease;
-}
-
-
-.community-button img {
-
-    width: 17px;
-    height: 17px;
+    width: 13px;
+    height: 13px;
 
     object-fit: contain;
 }
 
 
-.community-button:hover {
+/* =========================================================
+   MINI INFO CARDS
+========================================================= */
+
+.info-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 8px;
+
+    margin-top: 17px;
+}
+
+
+.info-card {
+
+    min-height: 92px;
+
+    padding: 13px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.065),
+            rgba(255,255,255,.025)
+        );
+
+    border:
+        1px solid var(--border);
+}
+
+
+.info-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    right: -35px;
+    bottom: -45px;
+
+    border-radius: 50%;
+
+    filter: blur(20px);
+
+    opacity: .45;
+}
+
+
+.info-card:nth-child(1)::after {
+
+    background: var(--cyan);
+}
+
+
+.info-card:nth-child(2)::after {
+
+    background: var(--purple);
+}
+
+
+.info-card:nth-child(3)::after {
+
+    background: var(--pink);
+}
+
+
+.info-number {
+
+    color: #62657c;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+}
+
+
+.info-card h3 {
+
+    margin-top: 18px;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.info-card p {
+
+    margin-top: 3px;
+
+    color: #6d7085;
+
+    font-size: 7px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   TELEGRAM BANNER
+========================================================= */
+
+.telegram-banner {
+
+    margin-top: 12px;
+
+    padding:
+        15px
+        17px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(85,234,255,.10),
+            rgba(98,133,255,.09),
+            rgba(182,108,255,.10)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+}
+
+
+.tg-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 0;
+}
+
+
+.tg-icon {
+
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+        rgba(85,234,255,.10);
+}
+
+
+.tg-icon img {
+
+    width: 19px;
+    height: 19px;
+
+    object-fit: contain;
+}
+
+
+.tg-text strong {
+
+    display: block;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+.tg-text span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: #777a91;
+
+    font-size: 7px;
+}
+
+
+.tg-button {
+
+    flex-shrink: 0;
+
+    padding:
+        8px
+        12px;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    color: #fff;
+
+    background:
+        linear-gradient(
+            100deg,
+            #4c9fff,
+            #6879ff
+        );
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    transition: .2s ease;
+}
+
+
+.tg-button:hover {
 
     transform:
-        translateY(-3px);
+        translateY(-2px);
 
     box-shadow:
-        0 12px 30px
-        rgba(255,255,255,.12);
+        0 6px 20px
+        rgba(76,159,255,.25);
 }
 
 
@@ -1032,29 +1212,27 @@ nav {
 
 footer {
 
-    margin-top: 55px;
-
-    padding:
-        20px
-        0;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,.06);
-
     display: flex;
+
+    align-items: center;
 
     justify-content: space-between;
 
-    color: #4f4f4c;
+    margin-top: 18px;
 
-    font-size: 9px;
+    padding:
+        5px
+        2px;
+
+    color: #4f5267;
+
+    font-size: 7px;
 }
 
 
 footer strong {
 
-    color: #777773;
+    color: #777a91;
 
     font-weight: 600;
 }
@@ -1078,32 +1256,33 @@ footer strong {
     justify-content: center;
 
     text-align: center;
-
-    padding: 30px;
 }
 
 
-.error-circle {
+.error-icon {
 
-    width: 55px;
-    height: 55px;
-
-    border-radius: 50%;
+    width: 48px;
+    height: 48px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
+    border-radius: 50%;
+
+    color: #ff7890;
+
+    background:
+        rgba(255,100,130,.07);
+
     border:
         1px solid
-        rgba(255,100,120,.25);
+        rgba(255,100,130,.20);
 
-    color: #ff7585;
+    font-size: 17px;
 
-    font-size: 18px;
-
-    margin-bottom: 17px;
+    margin-bottom: 10px;
 }
 
 
@@ -1113,23 +1292,23 @@ footer strong {
         "Space Grotesk",
         sans-serif;
 
-    font-size: 18px;
+    font-size: 14px;
 
-    font-weight: 500;
+    font-weight: 600;
 }
 
 
 .error-message p {
 
-    max-width: 370px;
+    max-width: 310px;
 
-    margin-top: 8px;
+    margin-top: 5px;
 
-    color: #656562;
+    color: #6d7085;
 
-    font-size: 10px;
+    font-size: 8px;
 
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 
@@ -1142,92 +1321,134 @@ footer strong {
     #main-content {
 
         width:
-            calc(100% - 20px);
+            calc(100% - 16px);
 
-        padding-bottom: 45px;
+        padding-top: 8px;
+
+        padding-bottom: 20px;
     }
 
 
     nav {
 
-        height: 50px;
+        margin-bottom: 8px;
     }
 
 
-    .nav-status {
+    .online {
 
         display: none;
     }
 
 
-    .player-stage {
+    .player-shell {
 
-        padding: 5px;
-
-        border-radius: 21px;
-    }
-
-
-    .player-inner {
+        padding: 3px;
 
         border-radius: 16px;
     }
 
 
-    .player-floating {
+    .player {
 
-        left: 10px;
-        right: 10px;
-        top: 10px;
+        border-radius: 13px;
     }
 
 
-    .floating-name {
+    #portalDisplay {
 
-        max-width: 60%;
-
-        padding:
-            7px
-            10px;
-
-        font-size: 8px;
+        aspect-ratio: 16 / 9;
     }
 
 
-    .floating-live {
+    .player-top {
+
+        top: 8px;
+
+        left: 8px;
+        right: 8px;
+    }
+
+
+    .stream-pill {
+
+        max-width: 62%;
 
         padding:
             6px
             8px;
+
+        font-size: 7px;
     }
 
 
-    .player-details {
+    .live-pill {
+
+        padding:
+            6px
+            8px;
+
+        font-size: 6px;
+    }
+
+
+    .play-button {
+
+        width: 52px;
+        height: 52px;
+    }
+
+
+    .play-button::after {
+
+        border-top-width: 7px;
+        border-bottom-width: 7px;
+        border-left-width: 10px;
+    }
+
+
+    .wait-title {
+
+        margin-top: 10px;
+
+        font-size: 12px;
+    }
+
+
+    .wait-sub {
+
+        font-size: 7px;
+    }
+
+
+    .stream-info {
 
         display: block;
 
         padding:
-            18px
-            4px
+            11px
+            3px
             0;
     }
 
 
     #streamLabel {
 
-        font-size: 17px;
+        font-size: 16px;
     }
 
 
-    .details-description {
+    .meta-sub {
 
-        font-size: 9px;
+        font-size: 7px;
     }
 
 
-    .player-actions {
+    .actions {
 
-        margin-top: 15px;
+        margin-top: 10px;
+
+        width: 100%;
     }
 
 
@@ -1235,67 +1456,138 @@ footer strong {
 
         flex: 1;
 
-        justify-content: center;
+        height: 32px;
     }
 
 
-    .features {
+    .info-grid {
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            repeat(3,1fr);
 
-        margin-top: 50px;
+        gap: 5px;
+
+        margin-top: 12px;
     }
 
 
-    .feature {
+    .info-card {
 
-        min-height: 135px;
+        min-height: 82px;
+
+        padding: 9px;
     }
 
 
-    .feature-number {
+    .info-number {
 
-        margin-bottom: 30px;
+        font-size: 6px;
     }
 
 
-    .community {
+    .info-card h3 {
 
-        margin-top: 50px;
+        margin-top: 14px;
+
+        font-size: 9px;
+    }
+
+
+    .info-card p {
+
+        font-size: 6px;
+    }
+
+
+    .telegram-banner {
+
+        margin-top: 9px;
 
         padding:
-            45px
-            18px;
+            11px;
+
+        border-radius: 12px;
+    }
+
+
+    .tg-icon {
+
+        width: 30px;
+        height: 30px;
+    }
+
+
+    .tg-icon img {
+
+        width: 16px;
+        height: 16px;
+    }
+
+
+    .tg-text strong {
+
+        font-size: 9px;
+    }
+
+
+    .tg-text span {
+
+        font-size: 6px;
+    }
+
+
+    .tg-button {
+
+        padding:
+            7px
+            9px;
+
+        font-size: 6px;
     }
 
 
     footer {
 
-        flex-direction: column;
+        font-size: 6px;
 
-        gap: 8px;
-
-        text-align: center;
+        margin-top: 12px;
     }
 
 }
 
 
-@media (max-width: 390px) {
+@media (max-width: 380px) {
 
-    .player-actions {
+    .logo {
 
-        gap: 5px;
+        font-size: 14px;
     }
 
 
-    .action {
+    .logo-mark {
 
-        padding:
-            0
-            10px;
+        width: 24px;
+        height: 24px;
+    }
+
+
+    .info-card {
+
+        min-height: 76px;
+
+        padding: 8px;
+    }
+
+
+    .info-card h3 {
 
         font-size: 8px;
+    }
+
+
+    .info-card p {
+
+        font-size: 5.5px;
     }
 
 }
@@ -1314,17 +1606,17 @@ footer strong {
 
 <div id="loading-screen">
 
-    <div class="loading-content">
+    <div class="loading-box">
 
-        <div class="loading-word">
-            EDGE<span>.</span>
+        <div class="loading-logo">
+            EDGE<span>.</span>LINKS
         </div>
 
-        <div class="loading-caption">
-            Preparing your experience
+        <div class="loading-text">
+            Loading experience
         </div>
 
-        <div class="loading-track">
+        <div class="loading-line">
             <span></span>
         </div>
 
@@ -1341,20 +1633,28 @@ footer strong {
 <main id="main-content">
 
 
-    <!-- NAVIGATION -->
+    <!-- ===================================================
+         NAVIGATION
+    =================================================== -->
 
     <nav>
 
         <div class="logo">
+
+            <div class="logo-mark">
+                E
+            </div>
+
             EDGE<span>.</span>LINKS
+
         </div>
 
 
         <div class="nav-right">
 
-            <div class="nav-status">
+            <div class="online">
 
-                <span class="status-dot"></span>
+                <span class="online-dot"></span>
 
                 Online
 
@@ -1383,25 +1683,27 @@ footer strong {
          PLAYER
     =================================================== -->
 
-    <section class="player-stage">
+    <section class="player-shell">
 
-        <div class="player-inner">
+        <div class="player">
 
 
-            <!-- FLOATING PLAYER INFORMATION -->
+            <!-- PLAYER TOP -->
 
-            <div class="player-floating">
+            <div class="player-top">
 
                 <div
-                    class="floating-name"
+                    class="stream-pill"
                     id="floatingStreamName">
+
+                    <span class="stream-dot"></span>
 
                     EDGE LINKS
 
                 </div>
 
 
-                <div class="floating-live">
+                <div class="live-pill">
 
                     <span></span>
 
@@ -1412,14 +1714,16 @@ footer strong {
             </div>
 
 
-            <!-- VIDEO -->
+            <!-- VIDEO AREA -->
 
             <div id="portalDisplay">
 
 
+                <!-- WAITING -->
+
                 <div id="portalStatusText">
 
-                    <div class="play-orb"></div>
+                    <div class="play-button"></div>
 
                     <div class="wait-title">
                         Preparing stream
@@ -1431,6 +1735,8 @@ footer strong {
 
                 </div>
 
+
+                <!-- IFRAME -->
 
                 <iframe
                     id="videoPlayer"
@@ -1445,14 +1751,16 @@ footer strong {
         </div>
 
 
-        <!-- PLAYER DETAILS -->
+        <!-- =================================================
+             STREAM INFORMATION
+        ================================================== -->
 
-        <div class="player-details">
+        <div class="stream-info">
 
 
-            <div class="details-left">
+            <div class="stream-meta">
 
-                <div class="details-label">
+                <div class="meta-label">
                     Currently viewing
                 </div>
 
@@ -1460,14 +1768,14 @@ footer strong {
                     Loading stream...
                 </div>
 
-                <div class="details-description">
-                    EDGE LINKS • Live streaming experience
+                <div class="meta-sub">
+                    EDGE LINKS • Live streaming
                 </div>
 
             </div>
 
 
-            <div class="player-actions">
+            <div class="actions">
 
                 <a
                     href="https://t.me/+7vIted3ey1cxNmE1"
@@ -1501,61 +1809,58 @@ footer strong {
 
 
     <!-- ===================================================
-         FEATURES
+         INFO CARDS
     =================================================== -->
 
-    <section class="features">
+    <section class="info-grid">
 
 
-        <article class="feature">
+        <article class="info-card">
 
-            <div class="feature-number">
-                01 / EXPERIENCE
+            <div class="info-number">
+                01 / VIEW
             </div>
 
             <h3>
-                Made for the screen.
+                Clean Player
             </h3>
 
             <p>
-                A distraction-free interface that puts
-                the actual stream first.
+                Focused viewing without unnecessary clutter.
             </p>
 
         </article>
 
 
-        <article class="feature">
+        <article class="info-card">
 
-            <div class="feature-number">
-                02 / ACCESS
+            <div class="info-number">
+                02 / SPEED
             </div>
 
             <h3>
-                One simple destination.
+                Quick Access
             </h3>
 
             <p>
-                Open your stream and get straight
-                into the action.
+                Open the page and get straight to the stream.
             </p>
 
         </article>
 
 
-        <article class="feature">
+        <article class="info-card">
 
-            <div class="feature-number">
-                03 / COMMUNITY
+            <div class="info-number">
+                03 / UPDATE
             </div>
 
             <h3>
-                Stay in the loop.
+                Stay Updated
             </h3>
 
             <p>
-                Follow EDGE LINKS on Telegram for
-                announcements and updates.
+                Get the latest updates through Telegram.
             </p>
 
         </article>
@@ -1566,37 +1871,45 @@ footer strong {
 
 
     <!-- ===================================================
-         TELEGRAM COMMUNITY
+         TELEGRAM
     =================================================== -->
 
-    <section class="community">
+    <section class="telegram-banner">
 
-        <div class="community-small">
-            The EDGE community
+
+        <div class="tg-left">
+
+            <div class="tg-icon">
+
+                <img
+                    src="https://www.freepnglogos.com/uploads/telegram-logo-png-0.png"
+                    alt="Telegram">
+
+            </div>
+
+
+            <div class="tg-text">
+
+                <strong>
+                    EDGE LINKS
+                </strong>
+
+                <span>
+                    Join the official Telegram community
+                </span>
+
+            </div>
+
         </div>
-
-        <h2>
-            Don't miss the next one.
-        </h2>
-
-        <p>
-            Join the official EDGE LINKS Telegram
-            community and stay connected with the latest
-            updates.
-        </p>
 
 
         <a
             href="https://t.me/+7vIted3ey1cxNmE1"
             target="_blank"
             rel="noopener noreferrer"
-            class="community-button">
+            class="tg-button">
 
-            <img
-                src="https://www.freepnglogos.com/uploads/telegram-logo-png-0.png"
-                alt="Telegram">
-
-            Join EDGE LINKS
+            JOIN CHANNEL →
 
         </a>
 
@@ -1616,7 +1929,7 @@ footer strong {
         </span>
 
         <span>
-            2026 / All systems operational
+            2026 • Online
         </span>
 
     </footer>
@@ -1649,7 +1962,7 @@ async function initializeApp() {
 
 
         /* =================================================
-           FETCH STREAM JSON
+           FETCH JSON
         ================================================= */
 
         const response =
@@ -1675,7 +1988,7 @@ async function initializeApp() {
 
 
         /* =================================================
-           GET ID FROM URL
+           GET STREAM ID
         ================================================= */
 
         const urlParams =
@@ -1710,7 +2023,7 @@ async function initializeApp() {
 
 
         /* =================================================
-           UPDATE PAGE TITLE
+           TITLE
         ================================================= */
 
         document.title =
@@ -1719,7 +2032,7 @@ async function initializeApp() {
 
 
         /* =================================================
-           LOAD STREAM
+           RENDER
         ================================================= */
 
         renderIframeUI(
@@ -1740,7 +2053,7 @@ async function initializeApp() {
 
 
         /* =================================================
-           HIDE LOADING SCREEN
+           HIDE LOADING
         ================================================= */
 
         setTimeout(() => {
@@ -1763,9 +2076,9 @@ async function initializeApp() {
 
                 loadingScreen.remove();
 
-            }, 900);
+            }, 550);
 
-        }, 600);
+        }, 500);
 
     }
 
@@ -1813,12 +2126,17 @@ function renderIframeUI(streamData) {
         streamName;
 
 
-    floatingStreamName.textContent =
-        streamName;
+    floatingStreamName.innerHTML = `
+
+        <span class="stream-dot"></span>
+
+        ${escapeHTML(streamName)}
+
+    `;
 
 
     /* =================================================
-       CHECK IFRAME SOURCE
+       CHECK SOURCE
     ================================================= */
 
     if (!streamData.iframeSrc) {
@@ -1847,6 +2165,28 @@ function renderIframeUI(streamData) {
 
     videoPlayer.style.display =
         'block';
+
+}
+
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(
+            /[&<>"']/g,
+            char => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            })[char]
+        );
 
 }
 
@@ -1882,18 +2222,17 @@ function renderErrorUI() {
 
         <div class="error-message">
 
-            <div class="error-circle">
+            <div class="error-icon">
                 !
             </div>
 
             <h2>
-                Nothing here right now.
+                Stream unavailable
             </h2>
 
             <p>
                 The requested stream could not be
-                found or is currently unavailable.
-                Please try again later.
+                found or is currently offline.
             </p>
 
         </div>
@@ -1905,7 +2244,7 @@ function renderErrorUI() {
 
 
 /* =========================================================
-   START APPLICATION
+   START
 ========================================================= */
 
 document.addEventListener(
