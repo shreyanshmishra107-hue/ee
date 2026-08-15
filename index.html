@@ -11,23 +11,53 @@
 <style>
 
 /* =========================================================
-   EDGE LINKS — AURORA GLASS UI
+   EDGE LINKS — PRISM GLASS UI
 ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root {
-    --bg: #070711;
-    --card: rgba(18,18,31,.72);
-    --white: #f8f9ff;
-    --muted: #8d90a8;
 
-    --cyan: #55eaff;
-    --blue: #6285ff;
-    --purple: #b66cff;
-    --pink: #ff65c7;
+    --bg: #060711;
+    --bg2: #0c0d19;
 
-    --border: rgba(255,255,255,.10);
+    --text: #f7f8ff;
+    --muted: #8589a4;
+    --dim: #5e627b;
+
+    --glass: rgba(255,255,255,.055);
+    --glass-strong: rgba(255,255,255,.085);
+
+    --border: rgba(255,255,255,.11);
+
+    --cyan: #4de8ff;
+    --blue: #5c8cff;
+    --purple: #a96cff;
+    --pink: #ff63c5;
+
+    --shadow: rgba(0,0,0,.45);
+}
+
+
+/* =========================================================
+   LIGHT MODE
+========================================================= */
+
+body.light {
+
+    --bg: #eef4ff;
+    --bg2: #f8faff;
+
+    --text: #111426;
+    --muted: #66708b;
+    --dim: #8b93a9;
+
+    --glass: rgba(255,255,255,.60);
+    --glass-strong: rgba(255,255,255,.78);
+
+    --border: rgba(35,50,90,.12);
+
+    --shadow: rgba(40,55,100,.15);
 }
 
 
@@ -49,36 +79,40 @@ body {
 
     min-height: 100vh;
 
-    color: var(--white);
-
     font-family:
         "DM Sans",
         sans-serif;
 
-    overflow-x: hidden;
+    color: var(--text);
 
     background:
         radial-gradient(
-            circle 500px at 5% 5%,
-            rgba(98,133,255,.20),
+            circle 520px at -5% -5%,
+            rgba(77,232,255,.18),
             transparent 70%
         ),
         radial-gradient(
-            circle 500px at 95% 10%,
-            rgba(182,108,255,.17),
+            circle 550px at 105% 5%,
+            rgba(169,108,255,.20),
             transparent 70%
         ),
         radial-gradient(
-            circle 450px at 50% 100%,
-            rgba(85,234,255,.11),
+            circle 500px at 50% 110%,
+            rgba(255,99,197,.12),
             transparent 70%
         ),
-        #070711;
+        var(--bg);
+
+    overflow-x: hidden;
+
+    transition:
+        background .45s ease,
+        color .45s ease;
 }
 
 
 /* =========================================================
-   COLORFUL AURORA
+   MOVING COLOR AURA
 ========================================================= */
 
 body::before {
@@ -87,55 +121,86 @@ body::before {
 
     position: fixed;
 
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 700px;
 
     left: 50%;
-    top: 30%;
+    top: 35%;
 
     transform: translate(-50%,-50%);
 
+    border-radius: 50%;
+
     background:
         conic-gradient(
-            from 90deg,
-            rgba(85,234,255,.08),
-            rgba(182,108,255,.09),
-            rgba(255,101,199,.07),
-            rgba(85,234,255,.08)
+            from 0deg,
+            rgba(77,232,255,.08),
+            rgba(92,140,255,.10),
+            rgba(169,108,255,.09),
+            rgba(255,99,197,.08),
+            rgba(77,232,255,.08)
         );
 
-    filter: blur(100px);
-
-    border-radius: 50%;
+    filter: blur(110px);
 
     pointer-events: none;
 
-    z-index: -1;
+    z-index: -2;
 
     animation:
-        auroraMove 12s ease-in-out infinite alternate;
+        auraMove 14s ease-in-out infinite alternate;
 }
 
 
-@keyframes auroraMove {
+@keyframes auraMove {
 
     0% {
         transform:
-            translate(-60%,-45%)
-            scale(1);
+            translate(-58%,-42%)
+            rotate(0deg)
+            scale(.9);
     }
 
     100% {
         transform:
-            translate(-40%,-55%)
+            translate(-42%,-58%)
+            rotate(25deg)
             scale(1.25);
     }
-
 }
 
 
 /* =========================================================
-   LOADING
+   SECOND COLOR GLOW
+========================================================= */
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    right: -100px;
+    bottom: 10%;
+
+    border-radius: 50%;
+
+    background:
+        rgba(77,232,255,.12);
+
+    filter: blur(100px);
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+/* =========================================================
+   LOADING SCREEN
 ========================================================= */
 
 #loading-screen {
@@ -144,7 +209,7 @@ body::before {
 
     inset: 0;
 
-    z-index: 9999;
+    z-index: 99999;
 
     display: flex;
 
@@ -154,45 +219,52 @@ body::before {
     background:
         radial-gradient(
             circle at center,
-            #17162c,
-            #070711 70%
+            #15152b,
+            #060711 70%
         );
 
     transition:
-        opacity .5s ease,
-        visibility .5s ease;
+        opacity .55s ease,
+        visibility .55s ease;
 }
 
 
 .loading-box {
 
-    text-align: center;
+    width: 190px;
 
-    width: 180px;
+    text-align: center;
 }
 
 
 .loading-logo {
 
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
     font-family:
         "Space Grotesk",
         sans-serif;
 
-    font-size: 23px;
+    font-size: 20px;
 
     font-weight: 700;
-
-    letter-spacing: -1px;
 }
 
 
-.loading-logo span {
+.loading-logo img {
 
-    color: var(--cyan);
+    width: 28px;
+    height: 28px;
 
-    text-shadow:
-        0 0 18px
-        rgba(85,234,255,.7);
+    object-fit: cover;
+
+    border-radius: 8px;
 }
 
 
@@ -200,7 +272,7 @@ body::before {
 
     margin-top: 8px;
 
-    color: #70738d;
+    color: #777b96;
 
     font-size: 8px;
 
@@ -218,9 +290,9 @@ body::before {
 
     margin-top: 18px;
 
-    overflow: hidden;
-
     border-radius: 20px;
+
+    overflow: hidden;
 
     background:
         rgba(255,255,255,.08);
@@ -241,6 +313,7 @@ body::before {
         linear-gradient(
             90deg,
             var(--cyan),
+            var(--blue),
             var(--purple),
             var(--pink)
         );
@@ -253,13 +326,12 @@ body::before {
 @keyframes loading {
 
     from {
-        transform: translateX(-130%);
+        transform: translateX(-150%);
     }
 
     to {
-        transform: translateX(400%);
+        transform: translateX(450%);
     }
-
 }
 
 
@@ -272,15 +344,15 @@ body::before {
     width:
         min(
             1120px,
-            calc(100% - 28px)
+            calc(100% - 26px)
         );
 
     margin: auto;
 
     padding:
-        14px
+        12px
         0
-        35px;
+        30px;
 
     opacity: 0;
 
@@ -292,12 +364,12 @@ body::before {
 
 
 /* =========================================================
-   NAV
+   NAVIGATION
 ========================================================= */
 
 nav {
 
-    height: 50px;
+    height: 52px;
 
     display: flex;
 
@@ -305,17 +377,40 @@ nav {
 
     justify-content: space-between;
 
-    margin-bottom: 13px;
+    margin-bottom: 10px;
 }
 
 
-.logo {
+.brand {
 
     display: flex;
 
     align-items: center;
 
-    gap: 7px;
+    gap: 8px;
+}
+
+
+.brand-logo {
+
+    width: 31px;
+    height: 31px;
+
+    border-radius: 9px;
+
+    object-fit: cover;
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    box-shadow:
+        0 5px 25px
+        rgba(77,232,255,.16);
+}
+
+
+.brand-name {
 
     font-family:
         "Space Grotesk",
@@ -325,43 +420,17 @@ nav {
 
     font-weight: 700;
 
-    letter-spacing: -.7px;
+    letter-spacing: -.6px;
 }
 
 
-.logo-mark {
-
-    width: 27px;
-    height: 27px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 9px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--cyan),
-            var(--blue),
-            var(--purple)
-        );
-
-    color: #05050a;
-
-    font-size: 11px;
-
-    box-shadow:
-        0 0 22px
-        rgba(85,234,255,.20);
-}
-
-
-.logo span {
+.brand-name span {
 
     color: var(--cyan);
+
+    text-shadow:
+        0 0 15px
+        rgba(77,232,255,.4);
 }
 
 
@@ -371,9 +440,13 @@ nav {
 
     align-items: center;
 
-    gap: 8px;
+    gap: 7px;
 }
 
+
+/* =========================================================
+   ONLINE PILL
+========================================================= */
 
 .online {
 
@@ -390,18 +463,21 @@ nav {
     border-radius: 30px;
 
     background:
-        rgba(255,255,255,.045);
+        var(--glass);
 
     border:
         1px solid var(--border);
 
-    color: #9295aa;
+    color: var(--muted);
 
-    font-size: 8px;
+    font-size: 7px;
+
+    letter-spacing: .8px;
 
     text-transform: uppercase;
 
-    letter-spacing: .7px;
+    backdrop-filter:
+        blur(15px);
 }
 
 
@@ -412,17 +488,73 @@ nav {
 
     border-radius: 50%;
 
-    background: #65f7ad;
+    background: #5effae;
 
     box-shadow:
-        0 0 9px #65f7ad;
+        0 0 9px #5effae;
 }
 
 
+/* =========================================================
+   MODE BUTTON
+========================================================= */
+
+.mode-button {
+
+    width: 32px;
+    height: 32px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    color: var(--text);
+
+    background:
+        var(--glass);
+
+    backdrop-filter:
+        blur(15px);
+
+    transition:
+        .25s ease;
+}
+
+
+.mode-button:hover {
+
+    transform:
+        rotate(15deg)
+        scale(1.06);
+
+    border-color:
+        rgba(77,232,255,.4);
+}
+
+
+.mode-icon {
+
+    font-size: 13px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   TELEGRAM NAV
+========================================================= */
+
 .telegram-nav {
 
-    width: 31px;
-    height: 31px;
+    width: 32px;
+    height: 32px;
 
     display: flex;
 
@@ -434,14 +566,15 @@ nav {
     background:
         linear-gradient(
             135deg,
-            rgba(85,234,255,.13),
-            rgba(98,133,255,.13)
+            rgba(77,232,255,.12),
+            rgba(169,108,255,.15)
         );
 
     border:
         1px solid var(--border);
 
-    transition: .2s ease;
+    transition:
+        .25s ease;
 }
 
 
@@ -449,10 +582,14 @@ nav {
 
     transform:
         translateY(-2px)
-        scale(1.04);
+        scale(1.05);
 
     border-color:
-        rgba(85,234,255,.35);
+        rgba(77,232,255,.4);
+
+    box-shadow:
+        0 8px 25px
+        rgba(77,232,255,.12);
 }
 
 
@@ -466,30 +603,52 @@ nav {
 
 
 /* =========================================================
-   PLAYER WRAPPER
+   PLAYER OUTER
 ========================================================= */
 
 .player-shell {
 
     position: relative;
 
-    padding: 5px;
+    padding: 4px;
 
-    border-radius: 20px;
+    border-radius: 21px;
 
     background:
         linear-gradient(
-            135deg,
-            rgba(85,234,255,.22),
-            rgba(98,133,255,.13),
-            rgba(182,108,255,.22)
+            120deg,
+            rgba(77,232,255,.65),
+            rgba(92,140,255,.25),
+            rgba(169,108,255,.55),
+            rgba(255,99,197,.32)
         );
 
+    background-size: 250% 250%;
+
+    animation:
+        borderFlow 8s ease infinite;
+
     box-shadow:
-        0 20px 70px
-        rgba(0,0,0,.40),
-        0 0 70px
-        rgba(98,133,255,.08);
+        0 25px 80px
+        var(--shadow),
+        0 0 65px
+        rgba(92,140,255,.10);
+}
+
+
+@keyframes borderFlow {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 
@@ -503,9 +662,9 @@ nav {
 
     overflow: hidden;
 
-    border-radius: 16px;
+    border-radius: 17px;
 
-    background: #030306;
+    background: #020207;
 }
 
 
@@ -522,8 +681,8 @@ nav {
     background:
         radial-gradient(
             circle at center,
-            #17172a,
-            #030306 70%
+            #19182d,
+            #020207 72%
         );
 }
 
@@ -542,18 +701,18 @@ nav {
 
 
 /* =========================================================
-   PLAYER TOP BAR
+   PLAYER TOP
 ========================================================= */
 
 .player-top {
 
     position: absolute;
 
-    left: 12px;
-    right: 12px;
-    top: 12px;
-
     z-index: 5;
+
+    top: 11px;
+    left: 11px;
+    right: 11px;
 
     display: flex;
 
@@ -582,25 +741,22 @@ nav {
     border-radius: 30px;
 
     background:
-        rgba(4,4,10,.55);
+        rgba(3,3,10,.52);
 
     border:
         1px solid
-        rgba(255,255,255,.11);
+        rgba(255,255,255,.12);
 
     backdrop-filter:
-        blur(14px);
+        blur(16px);
 
-    -webkit-backdrop-filter:
-        blur(14px);
-
-    color: #e9eaf4;
+    color: #edf0ff;
 
     font-size: 8px;
 
-    overflow: hidden;
-
     white-space: nowrap;
+
+    overflow: hidden;
 
     text-overflow: ellipsis;
 }
@@ -637,20 +793,18 @@ nav {
     border-radius: 30px;
 
     background:
-        rgba(4,4,10,.55);
+        rgba(3,3,10,.52);
 
     border:
         1px solid
-        rgba(255,255,255,.11);
+        rgba(255,255,255,.12);
 
     backdrop-filter:
-        blur(14px);
+        blur(16px);
 
     font-size: 7px;
 
     letter-spacing: 1px;
-
-    color: #f2f3f8;
 }
 
 
@@ -661,15 +815,15 @@ nav {
 
     border-radius: 50%;
 
-    background: #ff617c;
+    background: #ff637f;
 
     box-shadow:
-        0 0 8px #ff617c;
+        0 0 8px #ff637f;
 }
 
 
 /* =========================================================
-   WAITING SCREEN
+   WAITING
 ========================================================= */
 
 #portalStatusText {
@@ -689,10 +843,10 @@ nav {
 }
 
 
-.play-button {
+.play-orb {
 
-    width: 61px;
-    height: 61px;
+    width: 64px;
+    height: 64px;
 
     display: flex;
 
@@ -702,26 +856,29 @@ nav {
     border-radius: 50%;
 
     background:
-        linear-gradient(
-            135deg,
-            rgba(85,234,255,.16),
-            rgba(182,108,255,.17)
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(77,232,255,.25),
+            rgba(169,108,255,.12) 60%,
+            rgba(255,255,255,.03)
         );
 
     border:
         1px solid
-        rgba(255,255,255,.17);
+        rgba(255,255,255,.16);
 
     box-shadow:
-        0 0 35px
-        rgba(85,234,255,.12);
+        0 0 45px
+        rgba(77,232,255,.13),
+        inset 0 0 30px
+        rgba(169,108,255,.08);
 
     animation:
-        playFloat 2.5s ease-in-out infinite;
+        orbPulse 2.6s ease-in-out infinite;
 }
 
 
-.play-button::after {
+.play-orb::after {
 
     content: "";
 
@@ -741,28 +898,31 @@ nav {
 
     filter:
         drop-shadow(
-            0 0 6px
-            rgba(85,234,255,.8)
+            0 0 7px
+            rgba(77,232,255,.8)
         );
 }
 
 
-@keyframes playFloat {
+@keyframes orbPulse {
 
     0%,100% {
-        transform: translateY(0);
+        transform:
+            translateY(0)
+            scale(1);
     }
 
     50% {
-        transform: translateY(-5px);
+        transform:
+            translateY(-5px)
+            scale(1.04);
     }
-
 }
 
 
 .wait-title {
 
-    margin-top: 15px;
+    margin-top: 14px;
 
     font-family:
         "Space Grotesk",
@@ -778,14 +938,14 @@ nav {
 
     margin-top: 5px;
 
-    color: #6d7088;
+    color: #6d718d;
 
     font-size: 8px;
 }
 
 
 /* =========================================================
-   STREAM INFORMATION
+   STREAM DETAILS
 ========================================================= */
 
 .stream-info {
@@ -800,8 +960,8 @@ nav {
 
     padding:
         13px
-        4px
-        2px;
+        3px
+        1px;
 }
 
 
@@ -813,11 +973,11 @@ nav {
 
 .meta-label {
 
-    color: #65687e;
+    color: var(--dim);
 
     font-size: 7px;
 
-    letter-spacing: 1.4px;
+    letter-spacing: 1.5px;
 
     text-transform: uppercase;
 }
@@ -835,7 +995,7 @@ nav {
 
     font-weight: 600;
 
-    letter-spacing: -.4px;
+    letter-spacing: -.5px;
 
     white-space: nowrap;
 
@@ -849,14 +1009,14 @@ nav {
 
     margin-top: 3px;
 
-    color: #686b81;
+    color: var(--muted);
 
     font-size: 8px;
 }
 
 
 /* =========================================================
-   ACTION BUTTONS
+   ACTIONS
 ========================================================= */
 
 .actions {
@@ -873,6 +1033,10 @@ nav {
 
     height: 33px;
 
+    padding:
+        0
+        12px;
+
     display: flex;
 
     align-items: center;
@@ -880,18 +1044,14 @@ nav {
 
     gap: 6px;
 
-    padding:
-        0
-        12px;
-
     border-radius: 30px;
 
     text-decoration: none;
 
-    color: #c7c9d6;
+    color: var(--text);
 
     background:
-        rgba(255,255,255,.045);
+        var(--glass);
 
     border:
         1px solid var(--border);
@@ -900,7 +1060,11 @@ nav {
 
     font-weight: 600;
 
-    transition: .2s ease;
+    backdrop-filter:
+        blur(12px);
+
+    transition:
+        .22s ease;
 }
 
 
@@ -910,15 +1074,13 @@ nav {
         translateY(-2px);
 
     background:
-        rgba(255,255,255,.08);
-
-    color: #fff;
+        var(--glass-strong);
 }
 
 
 .action.primary {
 
-    color: #04070b;
+    color: #03050a;
 
     border: 0;
 
@@ -926,13 +1088,13 @@ nav {
         linear-gradient(
             100deg,
             var(--cyan),
-            #7cb8ff,
+            #7cb7ff,
             var(--purple)
         );
 
     box-shadow:
-        0 5px 20px
-        rgba(98,133,255,.18);
+        0 6px 22px
+        rgba(92,140,255,.17);
 }
 
 
@@ -946,7 +1108,7 @@ nav {
 
 
 /* =========================================================
-   MINI INFO CARDS
+   COLORFUL INFO GRID
 ========================================================= */
 
 .info-grid {
@@ -958,35 +1120,52 @@ nav {
 
     gap: 8px;
 
-    margin-top: 17px;
+    margin-top: 16px;
 }
 
 
 .info-card {
 
-    min-height: 92px;
-
-    padding: 13px;
-
     position: relative;
+
+    min-height: 94px;
 
     overflow: hidden;
 
-    border-radius: 13px;
+    padding: 13px;
+
+    border-radius: 14px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.065),
-            rgba(255,255,255,.025)
+            var(--glass-strong),
+            var(--glass)
         );
 
     border:
         1px solid var(--border);
+
+    backdrop-filter:
+        blur(18px);
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease;
 }
 
 
-.info-card::after {
+.info-card:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(255,255,255,.19);
+}
+
+
+.info-card::before {
 
     content: "";
 
@@ -1000,33 +1179,28 @@ nav {
 
     border-radius: 50%;
 
-    filter: blur(20px);
+    filter: blur(24px);
 
-    opacity: .45;
+    opacity: .55;
 }
 
 
-.info-card:nth-child(1)::after {
-
+.info-card:nth-child(1)::before {
     background: var(--cyan);
 }
 
-
-.info-card:nth-child(2)::after {
-
+.info-card:nth-child(2)::before {
     background: var(--purple);
 }
 
-
-.info-card:nth-child(3)::after {
-
+.info-card:nth-child(3)::before {
     background: var(--pink);
 }
 
 
 .info-number {
 
-    color: #62657c;
+    color: var(--dim);
 
     font-family:
         "Space Grotesk",
@@ -1056,7 +1230,9 @@ nav {
 
     margin-top: 3px;
 
-    color: #6d7085;
+    max-width: 180px;
+
+    color: var(--muted);
 
     font-size: 7px;
 
@@ -1070,11 +1246,15 @@ nav {
 
 .telegram-banner {
 
-    margin-top: 12px;
+    position: relative;
+
+    overflow: hidden;
+
+    margin-top: 10px;
 
     padding:
-        15px
-        17px;
+        14px
+        16px;
 
     display: flex;
 
@@ -1089,18 +1269,47 @@ nav {
     background:
         linear-gradient(
             100deg,
-            rgba(85,234,255,.10),
-            rgba(98,133,255,.09),
-            rgba(182,108,255,.10)
+            rgba(77,232,255,.10),
+            rgba(92,140,255,.10),
+            rgba(169,108,255,.10),
+            rgba(255,99,197,.08)
         );
 
     border:
         1px solid
-        rgba(255,255,255,.09);
+        var(--border);
+
+    backdrop-filter:
+        blur(20px);
+}
+
+
+.telegram-banner::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 100px;
+
+    left: 35%;
+
+    top: -65px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(77,232,255,.12);
+
+    filter: blur(35px);
 }
 
 
 .tg-left {
+
+    position: relative;
+    z-index: 1;
 
     display: flex;
 
@@ -1114,8 +1323,8 @@ nav {
 
 .tg-icon {
 
-    width: 34px;
-    height: 34px;
+    width: 37px;
+    height: 37px;
 
     flex-shrink: 0;
 
@@ -1124,17 +1333,29 @@ nav {
     align-items: center;
     justify-content: center;
 
-    border-radius: 10px;
+    border-radius: 11px;
 
     background:
-        rgba(85,234,255,.10);
+        linear-gradient(
+            135deg,
+            rgba(77,232,255,.17),
+            rgba(92,140,255,.16)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    box-shadow:
+        0 6px 25px
+        rgba(77,232,255,.08);
 }
 
 
 .tg-icon img {
 
-    width: 19px;
-    height: 19px;
+    width: 20px;
+    height: 20px;
 
     object-fit: contain;
 }
@@ -1160,7 +1381,7 @@ nav {
 
     margin-top: 2px;
 
-    color: #777a91;
+    color: var(--muted);
 
     font-size: 7px;
 }
@@ -1168,30 +1389,39 @@ nav {
 
 .tg-button {
 
+    position: relative;
+    z-index: 1;
+
     flex-shrink: 0;
 
     padding:
         8px
-        12px;
+        13px;
 
     border-radius: 30px;
 
-    text-decoration: none;
-
     color: #fff;
+
+    text-decoration: none;
 
     background:
         linear-gradient(
             100deg,
-            #4c9fff,
-            #6879ff
+            #3e9eff,
+            #6976ff,
+            #9665ff
         );
 
     font-size: 7px;
 
     font-weight: 700;
 
-    transition: .2s ease;
+    box-shadow:
+        0 6px 20px
+        rgba(82,126,255,.20);
+
+    transition:
+        .22s ease;
 }
 
 
@@ -1201,8 +1431,8 @@ nav {
         translateY(-2px);
 
     box-shadow:
-        0 6px 20px
-        rgba(76,159,255,.25);
+        0 9px 28px
+        rgba(82,126,255,.32);
 }
 
 
@@ -1218,13 +1448,13 @@ footer {
 
     justify-content: space-between;
 
-    margin-top: 18px;
+    margin-top: 16px;
 
     padding:
-        5px
+        4px
         2px;
 
-    color: #4f5267;
+    color: var(--dim);
 
     font-size: 7px;
 }
@@ -1232,9 +1462,404 @@ footer {
 
 footer strong {
 
-    color: #777a91;
+    color: var(--muted);
+}
 
-    font-weight: 600;
+
+/* =========================================================
+   TELEGRAM POPUP OVERLAY
+========================================================= */
+
+#telegram-popup {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(2,3,10,.72);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+}
+
+
+#telegram-popup.show {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+.popup-card {
+
+    position: relative;
+
+    width:
+        min(
+            390px,
+            100%
+        );
+
+    overflow: hidden;
+
+    padding:
+        28px
+        23px
+        22px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27,29,50,.96),
+            rgba(11,12,25,.97)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.13);
+
+    box-shadow:
+        0 35px 100px
+        rgba(0,0,0,.65),
+        0 0 70px
+        rgba(92,140,255,.10);
+
+    transform:
+        translateY(20px)
+        scale(.94);
+
+    transition:
+        transform .4s cubic-bezier(.2,.8,.2,1);
+}
+
+
+#telegram-popup.show .popup-card {
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+body.light #telegram-popup {
+
+    background:
+        rgba(225,231,247,.65);
+}
+
+
+body.light .popup-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.97),
+            rgba(241,245,255,.98)
+        );
+
+    border-color:
+        rgba(40,55,100,.12);
+
+    box-shadow:
+        0 30px 80px
+        rgba(50,65,110,.22);
+}
+
+
+/* popup glow */
+
+.popup-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 150px;
+
+    left: 50%;
+    top: -110px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink)
+        );
+
+    filter: blur(60px);
+
+    opacity: .22;
+}
+
+
+.popup-close {
+
+    position: absolute;
+
+    right: 13px;
+    top: 13px;
+
+    width: 29px;
+    height: 29px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    background:
+        rgba(255,255,255,.055);
+
+    color: var(--muted);
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: .2s ease;
+}
+
+
+.popup-close:hover {
+
+    color: var(--text);
+
+    transform:
+        rotate(90deg);
+
+    background:
+        rgba(255,255,255,.10);
+}
+
+
+.popup-logo {
+
+    position: relative;
+
+    width: 74px;
+    height: 74px;
+
+    margin:
+        2px
+        auto
+        15px;
+
+    padding: 3px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--cyan),
+            var(--blue),
+            var(--purple),
+            var(--pink)
+        );
+
+    box-shadow:
+        0 12px 45px
+        rgba(92,140,255,.25);
+}
+
+
+.popup-logo img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 19px;
+
+    background: #111;
+}
+
+
+.popup-kicker {
+
+    position: relative;
+
+    color: var(--cyan);
+
+    font-size: 7px;
+
+    letter-spacing: 2.5px;
+
+    text-transform: uppercase;
+
+    font-weight: 700;
+}
+
+
+.popup-card h2 {
+
+    position: relative;
+
+    margin-top: 7px;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    letter-spacing: -.8px;
+}
+
+
+.popup-card h2 span {
+
+    background:
+        linear-gradient(
+            100deg,
+            var(--cyan),
+            #8ca5ff,
+            var(--purple)
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+
+.popup-description {
+
+    position: relative;
+
+    max-width: 285px;
+
+    margin:
+        9px
+        auto
+        19px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.65;
+}
+
+
+.popup-join {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border: 0;
+
+    border-radius: 13px;
+
+    cursor: pointer;
+
+    color: #fff;
+
+    text-decoration: none;
+
+    background:
+        linear-gradient(
+            100deg,
+            #38a5ff,
+            #637aff,
+            #9a63ff
+        );
+
+    box-shadow:
+        0 9px 28px
+        rgba(80,125,255,.25);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    transition:
+        .22s ease;
+}
+
+
+.popup-join:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 13px 35px
+        rgba(80,125,255,.35);
+}
+
+
+.popup-join img {
+
+    width: 16px;
+    height: 16px;
+
+    object-fit: contain;
+}
+
+
+.popup-note {
+
+    position: relative;
+
+    margin-top: 10px;
+
+    color: var(--dim);
+
+    font-size: 7px;
+
+    letter-spacing: .3px;
 }
 
 
@@ -1293,18 +1918,16 @@ footer strong {
         sans-serif;
 
     font-size: 14px;
-
-    font-weight: 600;
 }
 
 
 .error-message p {
 
-    max-width: 310px;
+    max-width: 300px;
 
     margin-top: 5px;
 
-    color: #6d7085;
+    color: var(--muted);
 
     font-size: 8px;
 
@@ -1316,14 +1939,14 @@ footer strong {
    MOBILE
 ========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width:700px) {
 
     #main-content {
 
         width:
-            calc(100% - 16px);
+            calc(100% - 14px);
 
-        padding-top: 8px;
+        padding-top: 6px;
 
         padding-bottom: 20px;
     }
@@ -1331,7 +1954,22 @@ footer strong {
 
     nav {
 
-        margin-bottom: 8px;
+        height: 47px;
+
+        margin-bottom: 7px;
+    }
+
+
+    .brand-logo {
+
+        width: 28px;
+        height: 28px;
+    }
+
+
+    .brand-name {
+
+        font-size: 14px;
     }
 
 
@@ -1341,17 +1979,25 @@ footer strong {
     }
 
 
+    .mode-button,
+    .telegram-nav {
+
+        width: 30px;
+        height: 30px;
+    }
+
+
     .player-shell {
 
         padding: 3px;
 
-        border-radius: 16px;
+        border-radius: 17px;
     }
 
 
     .player {
 
-        border-radius: 13px;
+        border-radius: 14px;
     }
 
 
@@ -1364,7 +2010,6 @@ footer strong {
     .player-top {
 
         top: 8px;
-
         left: 8px;
         right: 8px;
     }
@@ -1392,14 +2037,14 @@ footer strong {
     }
 
 
-    .play-button {
+    .play-orb {
 
-        width: 52px;
-        height: 52px;
+        width: 53px;
+        height: 53px;
     }
 
 
-    .play-button::after {
+    .play-orb::after {
 
         border-top-width: 7px;
         border-bottom-width: 7px;
@@ -1411,7 +2056,7 @@ footer strong {
 
         margin-top: 10px;
 
-        font-size: 12px;
+        font-size: 11px;
     }
 
 
@@ -1426,7 +2071,7 @@ footer strong {
         display: block;
 
         padding:
-            11px
+            10px
             3px
             0;
     }
@@ -1446,9 +2091,9 @@ footer strong {
 
     .actions {
 
-        margin-top: 10px;
-
         width: 100%;
+
+        margin-top: 9px;
     }
 
 
@@ -1456,24 +2101,21 @@ footer strong {
 
         flex: 1;
 
-        height: 32px;
+        height: 31px;
     }
 
 
     .info-grid {
 
-        grid-template-columns:
-            repeat(3,1fr);
-
         gap: 5px;
 
-        margin-top: 12px;
+        margin-top: 11px;
     }
 
 
     .info-card {
 
-        min-height: 82px;
+        min-height: 83px;
 
         padding: 9px;
     }
@@ -1501,7 +2143,7 @@ footer strong {
 
     .telegram-banner {
 
-        margin-top: 9px;
+        margin-top: 8px;
 
         padding:
             11px;
@@ -1548,32 +2190,69 @@ footer strong {
 
     footer {
 
-        font-size: 6px;
+        margin-top: 11px;
 
-        margin-top: 12px;
+        font-size: 6px;
+    }
+
+
+    .popup-card {
+
+        padding:
+            25px
+            18px
+            19px;
+
+        border-radius: 22px;
+    }
+
+
+    .popup-logo {
+
+        width: 66px;
+        height: 66px;
+
+        border-radius: 19px;
+    }
+
+
+    .popup-logo img {
+
+        border-radius: 16px;
+    }
+
+
+    .popup-card h2 {
+
+        font-size: 22px;
+    }
+
+
+    .popup-description {
+
+        font-size: 9px;
+
+        margin-bottom: 16px;
     }
 
 }
 
 
-@media (max-width: 380px) {
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
 
-    .logo {
+@media (max-width:380px) {
 
-        font-size: 14px;
-    }
+    .brand-name {
 
-
-    .logo-mark {
-
-        width: 24px;
-        height: 24px;
+        font-size: 13px;
     }
 
 
     .info-card {
 
-        min-height: 76px;
+        min-height: 78px;
 
         padding: 8px;
     }
@@ -1590,6 +2269,12 @@ footer strong {
         font-size: 5.5px;
     }
 
+
+    .tg-text span {
+
+        max-width: 150px;
+    }
+
 }
 
 </style>
@@ -1601,7 +2286,7 @@ footer strong {
 
 
 <!-- =======================================================
-     LOADING SCREEN
+     LOADING
 ======================================================= -->
 
 <div id="loading-screen">
@@ -1609,15 +2294,93 @@ footer strong {
     <div class="loading-box">
 
         <div class="loading-logo">
-            EDGE<span>.</span>LINKS
+
+            <img
+                src="https://ik.imagekit.io/offsideverse/ffggf.jpg"
+                alt="EDGE LINKS">
+
+            EDGE LINKS
+
         </div>
 
         <div class="loading-text">
-            Loading experience
+            Preparing your experience
         </div>
 
         <div class="loading-line">
             <span></span>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+     TELEGRAM POPUP
+======================================================= -->
+
+<div id="telegram-popup">
+
+    <div class="popup-card">
+
+
+        <button
+            class="popup-close"
+            id="popupClose"
+            aria-label="Close">
+
+            ×
+
+        </button>
+
+
+        <div class="popup-logo">
+
+            <img
+                src="https://ik.imagekit.io/offsideverse/ffggf.jpg"
+                alt="EDGE LINKS">
+
+        </div>
+
+
+        <div class="popup-kicker">
+            OFFICIAL CHANNEL
+        </div>
+
+
+        <h2>
+            Join <span>Channel</span>
+        </h2>
+
+
+        <p class="popup-description">
+
+            <strong>Edge Links</strong><br>
+
+            For Instant And Efficient Links
+
+        </p>
+
+
+        <a
+            href="https://t.me/+7vIted3ey1cxNmE1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="popup-join">
+
+            <img
+                src="https://www.freepnglogos.com/uploads/telegram-logo-png-0.png"
+                alt="Telegram">
+
+            JOIN EDGE LINKS
+
+        </a>
+
+
+        <div class="popup-note">
+            Tap outside to close
         </div>
 
     </div>
@@ -1639,18 +2402,24 @@ footer strong {
 
     <nav>
 
-        <div class="logo">
 
-            <div class="logo-mark">
-                E
+        <div class="brand">
+
+            <img
+                class="brand-logo"
+                src="https://ik.imagekit.io/offsideverse/ffggf.jpg"
+                alt="EDGE LINKS">
+
+
+            <div class="brand-name">
+                EDGE <span>LINKS</span>
             </div>
-
-            EDGE<span>.</span>LINKS
 
         </div>
 
 
         <div class="nav-right">
+
 
             <div class="online">
 
@@ -1660,6 +2429,24 @@ footer strong {
 
             </div>
 
+
+            <!-- DARK / LIGHT -->
+
+            <button
+                class="mode-button"
+                id="modeButton"
+                aria-label="Toggle theme">
+
+                <span
+                    class="mode-icon"
+                    id="modeIcon">
+                    ☀
+                </span>
+
+            </button>
+
+
+            <!-- TELEGRAM -->
 
             <a
                 href="https://t.me/+7vIted3ey1cxNmE1"
@@ -1685,12 +2472,12 @@ footer strong {
 
     <section class="player-shell">
 
+
         <div class="player">
 
 
-            <!-- PLAYER TOP -->
-
             <div class="player-top">
+
 
                 <div
                     class="stream-pill"
@@ -1714,16 +2501,12 @@ footer strong {
             </div>
 
 
-            <!-- VIDEO AREA -->
-
             <div id="portalDisplay">
 
 
-                <!-- WAITING -->
-
                 <div id="portalStatusText">
 
-                    <div class="play-button"></div>
+                    <div class="play-orb"></div>
 
                     <div class="wait-title">
                         Preparing stream
@@ -1735,8 +2518,6 @@ footer strong {
 
                 </div>
 
-
-                <!-- IFRAME -->
 
                 <iframe
                     id="videoPlayer"
@@ -1751,9 +2532,8 @@ footer strong {
         </div>
 
 
-        <!-- =================================================
-             STREAM INFORMATION
-        ================================================== -->
+
+        <!-- STREAM INFO -->
 
         <div class="stream-info">
 
@@ -1777,6 +2557,7 @@ footer strong {
 
             <div class="actions">
 
+
                 <a
                     href="https://t.me/+7vIted3ey1cxNmE1"
                     target="_blank"
@@ -1799,6 +2580,7 @@ footer strong {
                     ↻ Reload
 
                 </a>
+
 
             </div>
 
@@ -1826,7 +2608,7 @@ footer strong {
             </h3>
 
             <p>
-                Focused viewing without unnecessary clutter.
+                A focused viewing experience built around the stream.
             </p>
 
         </article>
@@ -1843,7 +2625,7 @@ footer strong {
             </h3>
 
             <p>
-                Open the page and get straight to the stream.
+                Open the page and get straight to your stream.
             </p>
 
         </article>
@@ -1856,11 +2638,11 @@ footer strong {
             </div>
 
             <h3>
-                Stay Updated
+                Instant Updates
             </h3>
 
             <p>
-                Get the latest updates through Telegram.
+                Follow the channel for the latest links and updates.
             </p>
 
         </article>
@@ -1871,13 +2653,14 @@ footer strong {
 
 
     <!-- ===================================================
-         TELEGRAM
+         TELEGRAM BANNER
     =================================================== -->
 
     <section class="telegram-banner">
 
 
         <div class="tg-left">
+
 
             <div class="tg-icon">
 
@@ -1895,7 +2678,7 @@ footer strong {
                 </strong>
 
                 <span>
-                    Join the official Telegram community
+                    For Instant And Efficient Links
                 </span>
 
             </div>
@@ -1924,7 +2707,7 @@ footer strong {
     <footer>
 
         <span>
-            <strong>EDGE.LINKS</strong>
+            <strong>EDGE LINKS</strong>
             — Streaming Interface
         </span>
 
@@ -1940,6 +2723,14 @@ footer strong {
 
 
 <script>
+
+/* =========================================================
+   CONFIG
+========================================================= */
+
+const TELEGRAM_LINK =
+    'https://t.me/+7vIted3ey1cxNmE1';
+
 
 /* =========================================================
    INITIALIZE APP
@@ -1988,7 +2779,7 @@ async function initializeApp() {
 
 
         /* =================================================
-           GET STREAM ID
+           URL ID
         ================================================= */
 
         const urlParams =
@@ -2053,7 +2844,7 @@ async function initializeApp() {
 
 
         /* =================================================
-           HIDE LOADING
+           REMOVE LOADING
         ================================================= */
 
         setTimeout(() => {
@@ -2075,6 +2866,8 @@ async function initializeApp() {
             setTimeout(() => {
 
                 loadingScreen.remove();
+
+                showTelegramPopup();
 
             }, 550);
 
@@ -2136,7 +2929,7 @@ function renderIframeUI(streamData) {
 
 
     /* =================================================
-       CHECK SOURCE
+       CHECK IFRAME
     ================================================= */
 
     if (!streamData.iframeSrc) {
@@ -2157,7 +2950,7 @@ function renderIframeUI(streamData) {
 
 
     /* =================================================
-       SHOW PLAYER
+       SHOW
     ================================================= */
 
     statusText.style.display =
@@ -2171,7 +2964,7 @@ function renderIframeUI(streamData) {
 
 
 /* =========================================================
-   ESCAPE HTML
+   SAFE HTML
 ========================================================= */
 
 function escapeHTML(value) {
@@ -2193,7 +2986,7 @@ function escapeHTML(value) {
 
 
 /* =========================================================
-   ERROR UI
+   ERROR
 ========================================================= */
 
 function renderErrorUI() {
@@ -2241,6 +3034,169 @@ function renderErrorUI() {
 
 }
 
+
+
+/* =========================================================
+   DARK / LIGHT MODE
+========================================================= */
+
+const modeButton =
+    document.getElementById(
+        'modeButton'
+    );
+
+const modeIcon =
+    document.getElementById(
+        'modeIcon'
+    );
+
+
+function updateThemeIcon() {
+
+    if (
+        document.body.classList.contains(
+            'light'
+        )
+    ) {
+
+        modeIcon.textContent =
+            '☾';
+
+    } else {
+
+        modeIcon.textContent =
+            '☀';
+
+    }
+
+}
+
+
+const savedTheme =
+    localStorage.getItem(
+        'edge-links-theme'
+    );
+
+
+if (savedTheme === 'light') {
+
+    document.body.classList.add(
+        'light'
+    );
+
+}
+
+
+updateThemeIcon();
+
+
+modeButton.addEventListener(
+    'click',
+    () => {
+
+        document.body.classList.toggle(
+            'light'
+        );
+
+
+        const isLight =
+            document.body.classList.contains(
+                'light'
+            );
+
+
+        localStorage.setItem(
+            'edge-links-theme',
+            isLight
+                ? 'light'
+                : 'dark'
+        );
+
+
+        updateThemeIcon();
+
+    }
+);
+
+
+/* =========================================================
+   TELEGRAM POPUP
+========================================================= */
+
+const telegramPopup =
+    document.getElementById(
+        'telegram-popup'
+    );
+
+const popupClose =
+    document.getElementById(
+        'popupClose'
+    );
+
+
+function showTelegramPopup() {
+
+    setTimeout(() => {
+
+        telegramPopup.classList.add(
+            'show'
+        );
+
+    }, 900);
+
+}
+
+
+function closeTelegramPopup() {
+
+    telegramPopup.classList.remove(
+        'show'
+    );
+
+}
+
+
+popupClose.addEventListener(
+    'click',
+    closeTelegramPopup
+);
+
+
+telegramPopup.addEventListener(
+    'click',
+    event => {
+
+        if (
+            event.target ===
+            telegramPopup
+        ) {
+
+            closeTelegramPopup();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    'keydown',
+    event => {
+
+        if (
+            event.key === 'Escape'
+        ) {
+
+            closeTelegramPopup();
+
+        }
+
+    }
+);
 
 
 /* =========================================================
