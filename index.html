@@ -94,7 +94,7 @@ body::after {
 
 
 /* =========================================================
-   LOADING
+   LOADING SCREEN
 ========================================================= */
 
 #loading-screen {
@@ -359,117 +359,6 @@ nav {
 
 
 /* =========================================================
-   HERO
-========================================================= */
-
-.hero {
-
-    padding:
-        100px
-        0
-        65px;
-
-    text-align: center;
-
-    position: relative;
-}
-
-
-.eyebrow {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    color: #747471;
-
-    font-size: 9px;
-
-    font-weight: 600;
-
-    letter-spacing: 3px;
-
-    text-transform: uppercase;
-
-    margin-bottom: 22px;
-}
-
-
-.eyebrow::before {
-
-    content: "";
-
-    width: 18px;
-    height: 1px;
-
-    background:
-        var(--cyan);
-}
-
-
-.hero h1 {
-
-    font-family:
-        "Space Grotesk",
-        sans-serif;
-
-    font-size:
-        clamp(
-            52px,
-            10vw,
-            125px
-        );
-
-    font-weight: 500;
-
-    letter-spacing:
-        -7px;
-
-    line-height: .88;
-
-    color: #f5f5f2;
-}
-
-
-.hero h1 em {
-
-    font-style: normal;
-
-    background:
-        linear-gradient(
-            110deg,
-            #fff 15%,
-            var(--cyan) 48%,
-            var(--violet) 85%
-        );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
-}
-
-
-.hero-sub {
-
-    max-width: 470px;
-
-    margin:
-        30px
-        auto
-        0;
-
-    color: #777774;
-
-    font-size: 13px;
-
-    line-height: 1.8;
-}
-
-
-/* =========================================================
    PLAYER STAGE
 ========================================================= */
 
@@ -537,7 +426,7 @@ nav {
 
 
 /* =========================================================
-   PLAYER TOP FLOATING BAR
+   PLAYER FLOATING BAR
 ========================================================= */
 
 .player-floating {
@@ -931,7 +820,7 @@ nav {
 
 
 /* =========================================================
-   FEATURE SECTION
+   FEATURES
 ========================================================= */
 
 .features {
@@ -1013,7 +902,7 @@ nav {
 
 
 /* =========================================================
-   TELEGRAM CTA
+   TELEGRAM COMMUNITY
 ========================================================= */
 
 .community {
@@ -1271,37 +1160,6 @@ footer strong {
     }
 
 
-    .hero {
-
-        padding:
-            65px
-            0
-            40px;
-    }
-
-
-    .hero h1 {
-
-        font-size:
-            clamp(
-                52px,
-                16vw,
-                85px
-            );
-
-        letter-spacing:
-            -4px;
-    }
-
-
-    .hero-sub {
-
-        font-size: 11px;
-
-        max-width: 320px;
-    }
-
-
     .player-stage {
 
         padding: 5px;
@@ -1425,14 +1283,6 @@ footer strong {
 
 @media (max-width: 390px) {
 
-    .hero h1 {
-
-        font-size: 51px;
-
-        letter-spacing: -3px;
-    }
-
-
     .player-actions {
 
         gap: 5px;
@@ -1491,7 +1341,7 @@ footer strong {
 <main id="main-content">
 
 
-    <!-- NAV -->
+    <!-- NAVIGATION -->
 
     <nav>
 
@@ -1529,36 +1379,16 @@ footer strong {
 
 
 
-    <!-- HERO -->
-
-    <section class="hero">
-
-        <div class="eyebrow">
-            EDGE LINKS
-        </div>
-
-        <h1>
-            Stay<br>
-            <em>Connected.</em>
-        </h1>
-
-        <p class="hero-sub">
-            A clean viewing space built around the stream.
-            No clutter. No distractions. Just the experience.
-        </p>
-
-    </section>
-
-
-
-    <!-- PLAYER -->
+    <!-- ===================================================
+         PLAYER
+    =================================================== -->
 
     <section class="player-stage">
 
         <div class="player-inner">
 
 
-            <!-- FLOATING PLAYER UI -->
+            <!-- FLOATING PLAYER INFORMATION -->
 
             <div class="player-floating">
 
@@ -1615,7 +1445,7 @@ footer strong {
         </div>
 
 
-        <!-- DETAILS -->
+        <!-- PLAYER DETAILS -->
 
         <div class="player-details">
 
@@ -1670,7 +1500,9 @@ footer strong {
 
 
 
-    <!-- FEATURES -->
+    <!-- ===================================================
+         FEATURES
+    =================================================== -->
 
     <section class="features">
 
@@ -1733,7 +1565,9 @@ footer strong {
 
 
 
-    <!-- COMMUNITY -->
+    <!-- ===================================================
+         TELEGRAM COMMUNITY
+    =================================================== -->
 
     <section class="community">
 
@@ -1770,7 +1604,9 @@ footer strong {
 
 
 
-    <!-- FOOTER -->
+    <!-- ===================================================
+         FOOTER
+    =================================================== -->
 
     <footer>
 
@@ -1812,9 +1648,9 @@ async function initializeApp() {
     try {
 
 
-        /* ==============================================
+        /* =================================================
            FETCH STREAM JSON
-        ============================================== */
+        ================================================= */
 
         const response =
             await fetch(
@@ -1838,9 +1674,9 @@ async function initializeApp() {
             await response.json();
 
 
-        /* ==============================================
-           GET ID
-        ============================================== */
+        /* =================================================
+           GET ID FROM URL
+        ================================================= */
 
         const urlParams =
             new URLSearchParams(
@@ -1852,9 +1688,9 @@ async function initializeApp() {
             urlParams.get('id');
 
 
-        /* ==============================================
+        /* =================================================
            FIND STREAM
-        ============================================== */
+        ================================================= */
 
         const streamData =
             data.iframes?.find(
@@ -1873,18 +1709,18 @@ async function initializeApp() {
         }
 
 
-        /* ==============================================
-           PAGE TITLE
-        ============================================== */
+        /* =================================================
+           UPDATE PAGE TITLE
+        ================================================= */
 
         document.title =
             streamData.name ||
             'EDGE LINKS';
 
 
-        /* ==============================================
-           LOAD
-        ============================================== */
+        /* =================================================
+           LOAD STREAM
+        ================================================= */
 
         renderIframeUI(
             streamData
@@ -1903,9 +1739,9 @@ async function initializeApp() {
     } finally {
 
 
-        /* ==============================================
-           HIDE LOADING
-        ============================================== */
+        /* =================================================
+           HIDE LOADING SCREEN
+        ================================================= */
 
         setTimeout(() => {
 
@@ -1969,9 +1805,9 @@ function renderIframeUI(streamData) {
         'LIVE STREAM';
 
 
-    /* ==============================================
-       NAME
-    ============================================== */
+    /* =================================================
+       STREAM NAME
+    ================================================= */
 
     streamLabel.textContent =
         streamName;
@@ -1981,9 +1817,9 @@ function renderIframeUI(streamData) {
         streamName;
 
 
-    /* ==============================================
-       CHECK SOURCE
-    ============================================== */
+    /* =================================================
+       CHECK IFRAME SOURCE
+    ================================================= */
 
     if (!streamData.iframeSrc) {
 
@@ -1994,17 +1830,17 @@ function renderIframeUI(streamData) {
     }
 
 
-    /* ==============================================
+    /* =================================================
        LOAD IFRAME
-    ============================================== */
+    ================================================= */
 
     videoPlayer.src =
         streamData.iframeSrc;
 
 
-    /* ==============================================
+    /* =================================================
        SHOW PLAYER
-    ============================================== */
+    ================================================= */
 
     statusText.style.display =
         'none';
@@ -2017,7 +1853,7 @@ function renderIframeUI(streamData) {
 
 
 /* =========================================================
-   ERROR
+   ERROR UI
 ========================================================= */
 
 function renderErrorUI() {
@@ -2069,7 +1905,7 @@ function renderErrorUI() {
 
 
 /* =========================================================
-   START
+   START APPLICATION
 ========================================================= */
 
 document.addEventListener(
