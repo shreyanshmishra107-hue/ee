@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -11,31 +12,32 @@
 <style>
 
 /* =========================================================
-   EDGE LINKS — PRISM GLASS UI
+   EDGE LINKS — AURORA GLASS UI
 ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
+
 :root {
 
-    --bg: #060711;
-    --bg2: #0c0d19;
+    --bg: #070b18;
+    --bg2: #0b1023;
 
-    --text: #f7f8ff;
-    --muted: #8589a4;
-    --dim: #5e627b;
+    --text: #f5f7ff;
+    --muted: #8992b0;
+    --dim: #5f6885;
 
     --glass: rgba(255,255,255,.055);
     --glass-strong: rgba(255,255,255,.085);
 
-    --border: rgba(255,255,255,.11);
+    --border: rgba(255,255,255,.105);
 
-    --cyan: #4de8ff;
-    --blue: #5c8cff;
-    --purple: #a96cff;
-    --pink: #ff63c5;
+    --cyan: #4ce9ff;
+    --blue: #658cff;
+    --violet: #a66cff;
+    --pink: #ff65c7;
 
-    --shadow: rgba(0,0,0,.45);
+    --shadow: rgba(0,0,0,.48);
 }
 
 
@@ -45,19 +47,19 @@
 
 body.light {
 
-    --bg: #eef4ff;
-    --bg2: #f8faff;
+    --bg: #edf4ff;
+    --bg2: #f7faff;
 
-    --text: #111426;
-    --muted: #66708b;
-    --dim: #8b93a9;
+    --text: #15192b;
+    --muted: #69738f;
+    --dim: #929bb0;
 
-    --glass: rgba(255,255,255,.60);
+    --glass: rgba(255,255,255,.58);
     --glass-strong: rgba(255,255,255,.78);
 
-    --border: rgba(35,50,90,.12);
+    --border: rgba(48,65,105,.12);
 
-    --shadow: rgba(40,55,100,.15);
+    --shadow: rgba(50,70,110,.16);
 }
 
 
@@ -71,13 +73,17 @@ body.light {
     box-sizing: border-box;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
 
     min-height: 100vh;
+
+    overflow-x: hidden;
 
     font-family:
         "DM Sans",
@@ -86,24 +92,30 @@ body {
     color: var(--text);
 
     background:
-        radial-gradient(
-            circle 520px at -5% -5%,
-            rgba(77,232,255,.18),
-            transparent 70%
-        ),
-        radial-gradient(
-            circle 550px at 105% 5%,
-            rgba(169,108,255,.20),
-            transparent 70%
-        ),
-        radial-gradient(
-            circle 500px at 50% 110%,
-            rgba(255,99,197,.12),
-            transparent 70%
-        ),
-        var(--bg);
 
-    overflow-x: hidden;
+        radial-gradient(
+            circle 420px at 0% 0%,
+            rgba(76,233,255,.15),
+            transparent 68%
+        ),
+
+        radial-gradient(
+            circle 480px at 100% 5%,
+            rgba(166,108,255,.18),
+            transparent 68%
+        ),
+
+        radial-gradient(
+            circle 500px at 50% 100%,
+            rgba(255,101,199,.09),
+            transparent 70%
+        ),
+
+        linear-gradient(
+            135deg,
+            var(--bg),
+            var(--bg2)
+        );
 
     transition:
         background .45s ease,
@@ -112,7 +124,7 @@ body {
 
 
 /* =========================================================
-   MOVING COLOR AURA
+   BACKGROUND AURORA
 ========================================================= */
 
 body::before {
@@ -121,57 +133,61 @@ body::before {
 
     position: fixed;
 
-    width: 700px;
-    height: 700px;
+    width: 620px;
+    height: 620px;
 
-    left: 50%;
     top: 35%;
+    left: 50%;
 
-    transform: translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 
     border-radius: 50%;
 
     background:
         conic-gradient(
             from 0deg,
-            rgba(77,232,255,.08),
-            rgba(92,140,255,.10),
-            rgba(169,108,255,.09),
-            rgba(255,99,197,.08),
-            rgba(77,232,255,.08)
+            rgba(76,233,255,.07),
+            rgba(101,140,255,.10),
+            rgba(166,108,255,.08),
+            rgba(255,101,199,.07),
+            rgba(76,233,255,.07)
         );
 
-    filter: blur(110px);
-
-    pointer-events: none;
+    filter:
+        blur(100px);
 
     z-index: -2;
 
+    pointer-events: none;
+
     animation:
-        auraMove 14s ease-in-out infinite alternate;
+        auroraMove 15s ease-in-out infinite alternate;
 }
 
 
-@keyframes auraMove {
+@keyframes auroraMove {
 
     0% {
+
         transform:
-            translate(-58%,-42%)
-            rotate(0deg)
-            scale(.9);
+            translate(-60%,-45%)
+            scale(.85)
+            rotate(0deg);
     }
 
     100% {
+
         transform:
-            translate(-42%,-58%)
-            rotate(25deg)
-            scale(1.25);
+            translate(-40%,-55%)
+            scale(1.2)
+            rotate(25deg);
     }
 }
 
 
 /* =========================================================
-   SECOND COLOR GLOW
+   SMALL FLOATING LIGHTS
 ========================================================= */
 
 body::after {
@@ -180,18 +196,19 @@ body::after {
 
     position: fixed;
 
-    width: 300px;
-    height: 300px;
+    width: 260px;
+    height: 260px;
 
-    right: -100px;
+    right: -90px;
     bottom: 10%;
 
     border-radius: 50%;
 
     background:
-        rgba(77,232,255,.12);
+        rgba(76,233,255,.10);
 
-    filter: blur(100px);
+    filter:
+        blur(85px);
 
     pointer-events: none;
 
@@ -219,8 +236,8 @@ body::after {
     background:
         radial-gradient(
             circle at center,
-            #15152b,
-            #060711 70%
+            #101a39,
+            #050813 75%
         );
 
     transition:
@@ -242,7 +259,6 @@ body::after {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     gap: 8px;
@@ -251,7 +267,7 @@ body::after {
         "Space Grotesk",
         sans-serif;
 
-    font-size: 20px;
+    font-size: 19px;
 
     font-weight: 700;
 }
@@ -272,7 +288,7 @@ body::after {
 
     margin-top: 8px;
 
-    color: #777b96;
+    color: #727b9a;
 
     font-size: 8px;
 
@@ -290,9 +306,9 @@ body::after {
 
     margin-top: 18px;
 
-    border-radius: 20px;
-
     overflow: hidden;
+
+    border-radius: 20px;
 
     background:
         rgba(255,255,255,.08);
@@ -314,16 +330,17 @@ body::after {
             90deg,
             var(--cyan),
             var(--blue),
-            var(--purple),
+            var(--violet),
             var(--pink)
         );
 
     animation:
-        loading 1.2s infinite ease-in-out;
+        loadingMove 1.15s
+        infinite ease-in-out;
 }
 
 
-@keyframes loading {
+@keyframes loadingMove {
 
     from {
         transform: translateX(-150%);
@@ -343,23 +360,23 @@ body::after {
 
     width:
         min(
-            1120px,
+            1100px,
             calc(100% - 26px)
         );
 
     margin: auto;
 
     padding:
-        12px
+        10px
         0
-        30px;
+        28px;
 
     opacity: 0;
 
     visibility: hidden;
 
     transition:
-        opacity .6s ease;
+        opacity .55s ease;
 }
 
 
@@ -377,7 +394,7 @@ nav {
 
     justify-content: space-between;
 
-    margin-bottom: 10px;
+    margin-bottom: 9px;
 }
 
 
@@ -396,17 +413,17 @@ nav {
     width: 31px;
     height: 31px;
 
-    border-radius: 9px;
-
     object-fit: cover;
+
+    border-radius: 9px;
 
     border:
         1px solid
-        rgba(255,255,255,.18);
+        rgba(255,255,255,.17);
 
     box-shadow:
         0 5px 25px
-        rgba(77,232,255,.16);
+        rgba(76,233,255,.15);
 }
 
 
@@ -430,7 +447,7 @@ nav {
 
     text-shadow:
         0 0 15px
-        rgba(77,232,255,.4);
+        rgba(76,233,255,.38);
 }
 
 
@@ -445,7 +462,7 @@ nav {
 
 
 /* =========================================================
-   ONLINE PILL
+   ONLINE
 ========================================================= */
 
 .online {
@@ -466,7 +483,8 @@ nav {
         var(--glass);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     color: var(--muted);
 
@@ -504,27 +522,28 @@ nav {
     width: 32px;
     height: 32px;
 
-    border: 1px solid var(--border);
-
-    border-radius: 50%;
-
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    cursor: pointer;
+    border:
+        1px solid
+        var(--border);
 
-    color: var(--text);
+    border-radius: 50%;
 
     background:
         var(--glass);
 
+    color: var(--text);
+
+    cursor: pointer;
+
     backdrop-filter:
         blur(15px);
 
-    transition:
-        .25s ease;
+    transition: .25s ease;
 }
 
 
@@ -535,7 +554,7 @@ nav {
         scale(1.06);
 
     border-color:
-        rgba(77,232,255,.4);
+        rgba(76,233,255,.42);
 }
 
 
@@ -566,12 +585,13 @@ nav {
     background:
         linear-gradient(
             135deg,
-            rgba(77,232,255,.12),
-            rgba(169,108,255,.15)
+            rgba(76,233,255,.12),
+            rgba(166,108,255,.16)
         );
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     transition:
         .25s ease;
@@ -585,11 +605,11 @@ nav {
         scale(1.05);
 
     border-color:
-        rgba(77,232,255,.4);
+        rgba(76,233,255,.4);
 
     box-shadow:
         0 8px 25px
-        rgba(77,232,255,.12);
+        rgba(76,233,255,.12);
 }
 
 
@@ -603,7 +623,7 @@ nav {
 
 
 /* =========================================================
-   PLAYER OUTER
+   PLAYER SHELL
 ========================================================= */
 
 .player-shell {
@@ -616,11 +636,11 @@ nav {
 
     background:
         linear-gradient(
-            120deg,
-            rgba(77,232,255,.65),
-            rgba(92,140,255,.25),
-            rgba(169,108,255,.55),
-            rgba(255,99,197,.32)
+            110deg,
+            rgba(76,233,255,.7),
+            rgba(101,140,255,.28),
+            rgba(166,108,255,.6),
+            rgba(255,101,199,.32)
         );
 
     background-size: 250% 250%;
@@ -632,7 +652,7 @@ nav {
         0 25px 80px
         var(--shadow),
         0 0 65px
-        rgba(92,140,255,.10);
+        rgba(101,140,255,.10);
 }
 
 
@@ -664,7 +684,7 @@ nav {
 
     border-radius: 17px;
 
-    background: #020207;
+    background: #02030a;
 }
 
 
@@ -681,8 +701,8 @@ nav {
     background:
         radial-gradient(
             circle at center,
-            #19182d,
-            #020207 72%
+            #151d3b,
+            #02030a 72%
         );
 }
 
@@ -741,7 +761,7 @@ nav {
     border-radius: 30px;
 
     background:
-        rgba(3,3,10,.52);
+        rgba(3,5,15,.55);
 
     border:
         1px solid
@@ -771,10 +791,12 @@ nav {
 
     border-radius: 50%;
 
-    background: var(--cyan);
+    background:
+        var(--cyan);
 
     box-shadow:
-        0 0 9px var(--cyan);
+        0 0 9px
+        var(--cyan);
 }
 
 
@@ -793,7 +815,7 @@ nav {
     border-radius: 30px;
 
     background:
-        rgba(3,3,10,.52);
+        rgba(3,5,15,.55);
 
     border:
         1px solid
@@ -823,7 +845,7 @@ nav {
 
 
 /* =========================================================
-   WAITING
+   WAITING PLAYER
 ========================================================= */
 
 #portalStatusText {
@@ -857,24 +879,26 @@ nav {
 
     background:
         radial-gradient(
-            circle at 35% 30%,
-            rgba(77,232,255,.25),
-            rgba(169,108,255,.12) 60%,
-            rgba(255,255,255,.03)
+            circle at 30% 25%,
+            rgba(76,233,255,.25),
+            rgba(166,108,255,.12) 60%,
+            rgba(255,255,255,.025)
         );
 
     border:
         1px solid
-        rgba(255,255,255,.16);
+        rgba(255,255,255,.15);
 
     box-shadow:
         0 0 45px
-        rgba(77,232,255,.13),
+        rgba(76,233,255,.13),
         inset 0 0 30px
-        rgba(169,108,255,.08);
+        rgba(166,108,255,.08);
 
     animation:
-        orbPulse 2.6s ease-in-out infinite;
+        orbPulse 2.6s
+        ease-in-out
+        infinite;
 }
 
 
@@ -894,12 +918,13 @@ nav {
         8px solid transparent;
 
     border-left:
-        12px solid var(--cyan);
+        12px solid
+        var(--cyan);
 
     filter:
         drop-shadow(
             0 0 7px
-            rgba(77,232,255,.8)
+            rgba(76,233,255,.8)
         );
 }
 
@@ -907,12 +932,14 @@ nav {
 @keyframes orbPulse {
 
     0%,100% {
+
         transform:
             translateY(0)
             scale(1);
     }
 
     50% {
+
         transform:
             translateY(-5px)
             scale(1.04);
@@ -938,14 +965,14 @@ nav {
 
     margin-top: 5px;
 
-    color: #6d718d;
+    color: #6d7694;
 
     font-size: 8px;
 }
 
 
 /* =========================================================
-   STREAM DETAILS
+   STREAM INFO
 ========================================================= */
 
 .stream-info {
@@ -1054,7 +1081,8 @@ nav {
         var(--glass);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     font-size: 8px;
 
@@ -1088,13 +1116,13 @@ nav {
         linear-gradient(
             100deg,
             var(--cyan),
-            #7cb7ff,
-            var(--purple)
+            #7db5ff,
+            var(--violet)
         );
 
     box-shadow:
         0 6px 22px
-        rgba(92,140,255,.17);
+        rgba(101,140,255,.17);
 }
 
 
@@ -1108,7 +1136,7 @@ nav {
 
 
 /* =========================================================
-   COLORFUL INFO GRID
+   INFO GRID
 ========================================================= */
 
 .info-grid {
@@ -1144,7 +1172,8 @@ nav {
         );
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     backdrop-filter:
         blur(18px);
@@ -1189,9 +1218,11 @@ nav {
     background: var(--cyan);
 }
 
+
 .info-card:nth-child(2)::before {
-    background: var(--purple);
+    background: var(--violet);
 }
+
 
 .info-card:nth-child(3)::before {
     background: var(--pink);
@@ -1269,10 +1300,10 @@ nav {
     background:
         linear-gradient(
             100deg,
-            rgba(77,232,255,.10),
-            rgba(92,140,255,.10),
-            rgba(169,108,255,.10),
-            rgba(255,99,197,.08)
+            rgba(76,233,255,.09),
+            rgba(101,140,255,.10),
+            rgba(166,108,255,.11),
+            rgba(255,101,199,.07)
         );
 
     border:
@@ -1294,21 +1325,22 @@ nav {
     height: 100px;
 
     left: 35%;
-
     top: -65px;
 
     border-radius: 50%;
 
     background:
-        rgba(77,232,255,.12);
+        rgba(76,233,255,.12);
 
-    filter: blur(35px);
+    filter:
+        blur(35px);
 }
 
 
 .tg-left {
 
     position: relative;
+
     z-index: 1;
 
     display: flex;
@@ -1338,8 +1370,8 @@ nav {
     background:
         linear-gradient(
             135deg,
-            rgba(77,232,255,.17),
-            rgba(92,140,255,.16)
+            rgba(76,233,255,.17),
+            rgba(101,140,255,.16)
         );
 
     border:
@@ -1348,7 +1380,7 @@ nav {
 
     box-shadow:
         0 6px 25px
-        rgba(77,232,255,.08);
+        rgba(76,233,255,.08);
 }
 
 
@@ -1390,6 +1422,7 @@ nav {
 .tg-button {
 
     position: relative;
+
     z-index: 1;
 
     flex-shrink: 0;
@@ -1407,9 +1440,9 @@ nav {
     background:
         linear-gradient(
             100deg,
-            #3e9eff,
-            #6976ff,
-            #9665ff
+            #3d9fff,
+            #6877ff,
+            #9865ff
         );
 
     font-size: 7px;
@@ -1461,13 +1494,12 @@ footer {
 
 
 footer strong {
-
     color: var(--muted);
 }
 
 
 /* =========================================================
-   TELEGRAM POPUP OVERLAY
+   TELEGRAM POPUP
 ========================================================= */
 
 #telegram-popup {
@@ -1486,13 +1518,13 @@ footer strong {
     padding: 20px;
 
     background:
-        rgba(2,3,10,.72);
+        rgba(2,4,14,.72);
 
     backdrop-filter:
-        blur(12px);
+        blur(13px);
 
     -webkit-backdrop-filter:
-        blur(12px);
+        blur(13px);
 
     opacity: 0;
 
@@ -1536,8 +1568,8 @@ footer strong {
     background:
         linear-gradient(
             145deg,
-            rgba(27,29,50,.96),
-            rgba(11,12,25,.97)
+            rgba(23,31,62,.97),
+            rgba(8,13,30,.98)
         );
 
     border:
@@ -1548,14 +1580,15 @@ footer strong {
         0 35px 100px
         rgba(0,0,0,.65),
         0 0 70px
-        rgba(92,140,255,.10);
+        rgba(101,140,255,.10);
 
     transform:
         translateY(20px)
         scale(.94);
 
     transition:
-        transform .4s cubic-bezier(.2,.8,.2,1);
+        transform .4s
+        cubic-bezier(.2,.8,.2,1);
 }
 
 
@@ -1570,7 +1603,7 @@ footer strong {
 body.light #telegram-popup {
 
     background:
-        rgba(225,231,247,.65);
+        rgba(225,232,248,.67);
 }
 
 
@@ -1579,8 +1612,8 @@ body.light .popup-card {
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.97),
-            rgba(241,245,255,.98)
+            rgba(255,255,255,.98),
+            rgba(241,246,255,.98)
         );
 
     border-color:
@@ -1591,8 +1624,6 @@ body.light .popup-card {
         rgba(50,65,110,.22);
 }
 
-
-/* popup glow */
 
 .popup-card::before {
 
@@ -1613,11 +1644,12 @@ body.light .popup-card {
         linear-gradient(
             90deg,
             var(--cyan),
-            var(--purple),
+            var(--violet),
             var(--pink)
         );
 
-    filter: blur(60px);
+    filter:
+        blur(60px);
 
     opacity: .22;
 }
@@ -1638,11 +1670,11 @@ body.light .popup-card {
     align-items: center;
     justify-content: center;
 
-    border-radius: 50%;
-
     border:
         1px solid
         rgba(255,255,255,.10);
+
+    border-radius: 50%;
 
     background:
         rgba(255,255,255,.055);
@@ -1690,13 +1722,13 @@ body.light .popup-card {
             135deg,
             var(--cyan),
             var(--blue),
-            var(--purple),
+            var(--violet),
             var(--pink)
         );
 
     box-shadow:
         0 12px 45px
-        rgba(92,140,255,.25);
+        rgba(101,140,255,.25);
 }
 
 
@@ -1754,10 +1786,11 @@ body.light .popup-card {
             100deg,
             var(--cyan),
             #8ca5ff,
-            var(--purple)
+            var(--violet)
         );
 
     -webkit-background-clip: text;
+
     background-clip: text;
 
     color: transparent;
@@ -1801,8 +1834,6 @@ body.light .popup-card {
     border: 0;
 
     border-radius: 13px;
-
-    cursor: pointer;
 
     color: #fff;
 
@@ -1858,8 +1889,6 @@ body.light .popup-card {
     color: var(--dim);
 
     font-size: 7px;
-
-    letter-spacing: .3px;
 }
 
 
@@ -2044,14 +2073,6 @@ body.light .popup-card {
     }
 
 
-    .play-orb::after {
-
-        border-top-width: 7px;
-        border-bottom-width: 7px;
-        border-left-width: 10px;
-    }
-
-
     .wait-title {
 
         margin-top: 10px;
@@ -2121,12 +2142,6 @@ body.light .popup-card {
     }
 
 
-    .info-number {
-
-        font-size: 6px;
-    }
-
-
     .info-card h3 {
 
         margin-top: 14px;
@@ -2145,8 +2160,7 @@ body.light .popup-card {
 
         margin-top: 8px;
 
-        padding:
-            11px;
+        padding: 11px;
 
         border-radius: 12px;
     }
@@ -2231,48 +2245,35 @@ body.light .popup-card {
     .popup-description {
 
         font-size: 9px;
-
-        margin-bottom: 16px;
     }
 
 }
 
 
 /* =========================================================
-   VERY SMALL PHONES
+   VERY SMALL DEVICES
 ========================================================= */
 
 @media (max-width:380px) {
 
     .brand-name {
-
         font-size: 13px;
     }
 
 
     .info-card {
-
         min-height: 78px;
-
         padding: 8px;
     }
 
 
     .info-card h3 {
-
         font-size: 8px;
     }
 
 
     .info-card p {
-
         font-size: 5.5px;
-    }
-
-
-    .tg-text span {
-
-        max-width: 150px;
     }
 
 }
@@ -2286,7 +2287,7 @@ body.light .popup-card {
 
 
 <!-- =======================================================
-     LOADING
+     LOADING SCREEN
 ======================================================= -->
 
 <div id="loading-screen">
@@ -2303,12 +2304,16 @@ body.light .popup-card {
 
         </div>
 
+
         <div class="loading-text">
             Preparing your experience
         </div>
 
+
         <div class="loading-line">
+
             <span></span>
+
         </div>
 
     </div>
@@ -2346,7 +2351,7 @@ body.light .popup-card {
 
 
         <div class="popup-kicker">
-            OFFICIAL CHANNEL
+            OFFICIAL TELEGRAM
         </div>
 
 
@@ -2390,7 +2395,7 @@ body.light .popup-card {
 
 
 <!-- =======================================================
-     MAIN
+     MAIN CONTENT
 ======================================================= -->
 
 <main id="main-content">
@@ -2412,7 +2417,9 @@ body.light .popup-card {
 
 
             <div class="brand-name">
+
                 EDGE <span>LINKS</span>
+
             </div>
 
         </div>
@@ -2430,8 +2437,6 @@ body.light .popup-card {
             </div>
 
 
-            <!-- DARK / LIGHT -->
-
             <button
                 class="mode-button"
                 id="modeButton"
@@ -2445,8 +2450,6 @@ body.light .popup-card {
 
             </button>
 
-
-            <!-- TELEGRAM -->
 
             <a
                 href="https://t.me/+7vIted3ey1cxNmE1"
@@ -2508,9 +2511,11 @@ body.light .popup-card {
 
                     <div class="play-orb"></div>
 
+
                     <div class="wait-title">
                         Preparing stream
                     </div>
+
 
                     <div class="wait-sub">
                         Please wait a moment
@@ -2521,7 +2526,7 @@ body.light .popup-card {
 
                 <iframe
                     id="videoPlayer"
-                    allow="autoplay; fullscreen; picture-in-picture"
+                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
                     allowfullscreen
                     scrolling="no">
                 </iframe>
@@ -2533,7 +2538,7 @@ body.light .popup-card {
 
 
 
-        <!-- STREAM INFO -->
+        <!-- STREAM DETAILS -->
 
         <div class="stream-info">
 
@@ -2544,9 +2549,11 @@ body.light .popup-card {
                     Currently viewing
                 </div>
 
+
                 <div id="streamLabel">
                     Loading stream...
                 </div>
+
 
                 <div class="meta-sub">
                     EDGE LINKS • Live streaming
@@ -2581,7 +2588,6 @@ body.light .popup-card {
 
                 </a>
 
-
             </div>
 
         </div>
@@ -2603,12 +2609,14 @@ body.light .popup-card {
                 01 / VIEW
             </div>
 
+
             <h3>
                 Clean Player
             </h3>
 
+
             <p>
-                A focused viewing experience built around the stream.
+                A focused viewing experience built around your stream.
             </p>
 
         </article>
@@ -2620,9 +2628,11 @@ body.light .popup-card {
                 02 / SPEED
             </div>
 
+
             <h3>
                 Quick Access
             </h3>
+
 
             <p>
                 Open the page and get straight to your stream.
@@ -2637,9 +2647,11 @@ body.light .popup-card {
                 03 / UPDATE
             </div>
 
+
             <h3>
                 Instant Updates
             </h3>
+
 
             <p>
                 Follow the channel for the latest links and updates.
@@ -2677,6 +2689,7 @@ body.light .popup-card {
                     EDGE LINKS
                 </strong>
 
+
                 <span>
                     For Instant And Efficient Links
                 </span>
@@ -2707,9 +2720,13 @@ body.light .popup-card {
     <footer>
 
         <span>
+
             <strong>EDGE LINKS</strong>
+
             — Streaming Interface
+
         </span>
+
 
         <span>
             2026 • Online
@@ -2725,42 +2742,51 @@ body.light .popup-card {
 <script>
 
 /* =========================================================
-   CONFIG
+   EDGE LINKS — JAVASCRIPT
 ========================================================= */
-
-const TELEGRAM_LINK =
-    'https://t.me/+7vIted3ey1cxNmE1';
 
 
 /* =========================================================
-   INITIALIZE APP
+   TELEGRAM
+========================================================= */
+
+const TELEGRAM_LINK =
+    "https://t.me/+7vIt3ey1cxNmE1";
+
+
+/* =========================================================
+   INITIALIZE
 ========================================================= */
 
 async function initializeApp() {
 
+
     const loadingScreen =
         document.getElementById(
-            'loading-screen'
+            "loading-screen"
         );
+
 
     const mainContent =
         document.getElementById(
-            'main-content'
+            "main-content"
         );
 
 
     try {
 
 
-        /* =================================================
+        /* ================================================
            FETCH JSON
         ================================================= */
 
         const response =
             await fetch(
-                'https://paid-links-json.pages.dev/pkmkb.json',
+                "https://paid-links-json.pages.dev/pkmkb.json?cb=" +
+                Date.now(),
                 {
-                    cache: 'no-store'
+                    method: "GET",
+                    cache: "no-store"
                 }
             );
 
@@ -2768,7 +2794,8 @@ async function initializeApp() {
         if (!response.ok) {
 
             throw new Error(
-                'Failed to fetch JSON'
+                "JSON request failed: " +
+                response.status
             );
 
         }
@@ -2778,237 +2805,357 @@ async function initializeApp() {
             await response.json();
 
 
-        /* =================================================
-           URL ID
+        /* ================================================
+           VALIDATE
         ================================================= */
 
-        const urlParams =
+        if (
+            !data ||
+            !Array.isArray(data.iframes)
+        ) {
+
+            throw new Error(
+                "Invalid JSON structure"
+            );
+
+        }
+
+
+        /* ================================================
+           GET ID
+        ================================================= */
+
+        const params =
             new URLSearchParams(
                 window.location.search
             );
 
 
         const streamId =
-            urlParams.get('id');
+            params.get("id");
 
 
-        /* =================================================
-           FIND STREAM
-        ================================================= */
+        if (!streamId) {
 
-        const streamData =
-            data.iframes?.find(
-                item =>
-                    String(item.id) ===
-                    String(streamId)
+            renderErrorUI(
+                "No stream ID was provided."
             );
-
-
-        if (!streamData) {
-
-            renderErrorUI();
 
             return;
 
         }
 
 
-        /* =================================================
+        /* ================================================
+           FIND STREAM
+        ================================================= */
+
+        const streamData =
+            data.iframes.find(
+                item =>
+                    String(item.id).toLowerCase() ===
+                    String(streamId).toLowerCase()
+            );
+
+
+        if (!streamData) {
+
+            renderErrorUI(
+                "Stream ID \"" +
+                streamId +
+                "\" was not found."
+            );
+
+            return;
+
+        }
+
+
+        /* ================================================
+           VALIDATE IFRAME
+        ================================================= */
+
+        if (
+            !streamData.iframeSrc ||
+            typeof streamData.iframeSrc !== "string"
+        ) {
+
+            renderErrorUI(
+                "This stream does not have a valid player URL."
+            );
+
+            return;
+
+        }
+
+
+        /* ================================================
            TITLE
         ================================================= */
 
         document.title =
-            streamData.name ||
-            'EDGE LINKS';
+            streamData.name
+                ? streamData.name +
+                  " • EDGE LINKS"
+                : "EDGE LINKS";
 
 
-        /* =================================================
-           RENDER
+        /* ================================================
+           STREAM LABEL
         ================================================= */
 
-        renderIframeUI(
-            streamData
+        const streamLabel =
+            document.getElementById(
+                "streamLabel"
+            );
+
+
+        if (streamLabel) {
+
+            streamLabel.textContent =
+                streamData.name ||
+                "LIVE STREAM";
+
+        }
+
+
+        /* ================================================
+           PLAYER LABEL
+        ================================================= */
+
+        const floatingName =
+            document.getElementById(
+                "floatingStreamName"
+            );
+
+
+        if (floatingName) {
+
+            floatingName.innerHTML = `
+
+                <span class="stream-dot"></span>
+
+                ${escapeHTML(
+                    streamData.name ||
+                    "LIVE STREAM"
+                )}
+
+            `;
+
+        }
+
+
+        /* ================================================
+           IFRAME
+        ================================================= */
+
+        const videoPlayer =
+            document.getElementById(
+                "videoPlayer"
+            );
+
+
+        const statusText =
+            document.getElementById(
+                "portalStatusText"
+            );
+
+
+        videoPlayer.src =
+            streamData.iframeSrc;
+
+
+        videoPlayer.setAttribute(
+            "allow",
+            "autoplay; fullscreen; picture-in-picture; encrypted-media"
         );
+
+
+        videoPlayer.setAttribute(
+            "allowfullscreen",
+            ""
+        );
+
+
+        /* ================================================
+           IFRAME LOAD
+        ================================================= */
+
+        videoPlayer.onload =
+            function () {
+
+                if (statusText) {
+
+                    statusText.style.display =
+                        "none";
+
+                }
+
+
+                videoPlayer.style.display =
+                    "block";
+
+            };
+
+
+        /* ================================================
+           SHOW
+        ================================================= */
+
+        videoPlayer.style.display =
+            "block";
+
+
+        if (statusText) {
+
+            statusText.style.display =
+                "none";
+
+        }
 
 
     } catch (error) {
 
+
         console.error(
-            'EDGE LINKS ERROR:',
+            "EDGE LINKS ERROR:",
             error
         );
 
-        renderErrorUI();
+
+        renderErrorUI(
+            "Unable to load the stream service."
+        );
+
 
     } finally {
 
 
-        /* =================================================
-           REMOVE LOADING
+        /* ================================================
+           HIDE LOADER
         ================================================= */
 
-        setTimeout(() => {
-
-            loadingScreen.style.opacity =
-                '0';
-
-            loadingScreen.style.visibility =
-                'hidden';
+        setTimeout(
+            function () {
 
 
-            mainContent.style.opacity =
-                '1';
+                if (loadingScreen) {
 
-            mainContent.style.visibility =
-                'visible';
+                    loadingScreen.style.opacity =
+                        "0";
+
+                    loadingScreen.style.visibility =
+                        "hidden";
+
+                }
 
 
-            setTimeout(() => {
+                if (mainContent) {
 
-                loadingScreen.remove();
+                    mainContent.style.opacity =
+                        "1";
 
-                showTelegramPopup();
+                    mainContent.style.visibility =
+                        "visible";
 
-            }, 550);
+                }
 
-        }, 500);
+
+                setTimeout(
+                    function () {
+
+
+                        if (loadingScreen) {
+
+                            loadingScreen.remove();
+
+                        }
+
+
+                        setTimeout(
+                            showTelegramPopup,
+                            700
+                        );
+
+
+                    },
+                    550
+                );
+
+
+            },
+            450
+        );
 
     }
 
 }
 
 
-
 /* =========================================================
-   RENDER STREAM
-========================================================= */
-
-function renderIframeUI(streamData) {
-
-    const videoPlayer =
-        document.getElementById(
-            'videoPlayer'
-        );
-
-    const statusText =
-        document.getElementById(
-            'portalStatusText'
-        );
-
-    const streamLabel =
-        document.getElementById(
-            'streamLabel'
-        );
-
-    const floatingStreamName =
-        document.getElementById(
-            'floatingStreamName'
-        );
-
-
-    const streamName =
-        streamData.name ||
-        'LIVE STREAM';
-
-
-    /* =================================================
-       STREAM NAME
-    ================================================= */
-
-    streamLabel.textContent =
-        streamName;
-
-
-    floatingStreamName.innerHTML = `
-
-        <span class="stream-dot"></span>
-
-        ${escapeHTML(streamName)}
-
-    `;
-
-
-    /* =================================================
-       CHECK IFRAME
-    ================================================= */
-
-    if (!streamData.iframeSrc) {
-
-        renderErrorUI();
-
-        return;
-
-    }
-
-
-    /* =================================================
-       LOAD IFRAME
-    ================================================= */
-
-    videoPlayer.src =
-        streamData.iframeSrc;
-
-
-    /* =================================================
-       SHOW
-    ================================================= */
-
-    statusText.style.display =
-        'none';
-
-    videoPlayer.style.display =
-        'block';
-
-}
-
-
-
-/* =========================================================
-   SAFE HTML
+   ESCAPE HTML
 ========================================================= */
 
 function escapeHTML(value) {
 
-    return String(value)
-        .replace(
-            /[&<>"']/g,
-            char => ({
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            })[char]
-        );
+    return String(value).replace(
+        /[&<>"']/g,
+        function (char) {
+
+            const map = {
+
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;"
+
+            };
+
+            return map[char];
+
+        }
+    );
 
 }
 
 
-
 /* =========================================================
-   ERROR
+   ERROR UI
 ========================================================= */
 
-function renderErrorUI() {
+function renderErrorUI(message) {
+
 
     document.title =
-        'EDGE LINKS — Stream unavailable';
+        "EDGE LINKS • Error";
 
 
     const portalDisplay =
         document.getElementById(
-            'portalDisplay'
+            "portalDisplay"
         );
 
 
     const streamLabel =
         document.getElementById(
-            'streamLabel'
+            "streamLabel"
         );
 
 
-    streamLabel.textContent =
-        'Stream unavailable';
+    if (streamLabel) {
+
+        streamLabel.textContent =
+            "STREAM UNAVAILABLE";
+
+    }
+
+
+    if (!portalDisplay) {
+
+        return;
+
+    }
 
 
     portalDisplay.innerHTML = `
@@ -3020,12 +3167,11 @@ function renderErrorUI() {
             </div>
 
             <h2>
-                Stream unavailable
+                Stream Unavailable
             </h2>
 
             <p>
-                The requested stream could not be
-                found or is currently offline.
+                ${escapeHTML(message)}
             </p>
 
         </div>
@@ -3035,88 +3181,115 @@ function renderErrorUI() {
 }
 
 
-
 /* =========================================================
-   DARK / LIGHT MODE
+   THEME
 ========================================================= */
 
 const modeButton =
     document.getElementById(
-        'modeButton'
+        "modeButton"
     );
+
 
 const modeIcon =
     document.getElementById(
-        'modeIcon'
+        "modeIcon"
     );
 
 
 function updateThemeIcon() {
 
+
     if (
         document.body.classList.contains(
-            'light'
+            "light"
         )
     ) {
 
         modeIcon.textContent =
-            '☾';
+            "☾";
 
     } else {
 
         modeIcon.textContent =
-            '☀';
+            "☀";
 
     }
 
 }
 
 
-const savedTheme =
-    localStorage.getItem(
-        'edge-links-theme'
-    );
+/* =========================================================
+   LOAD SAVED THEME
+========================================================= */
+
+try {
 
 
-if (savedTheme === 'light') {
+    const savedTheme =
+        localStorage.getItem(
+            "edge-links-theme"
+        );
 
-    document.body.classList.add(
-        'light'
-    );
 
-}
+    if (
+        savedTheme === "light"
+    ) {
+
+        document.body.classList.add(
+            "light"
+        );
+
+    }
+
+
+} catch (error) {}
 
 
 updateThemeIcon();
 
 
-modeButton.addEventListener(
-    'click',
-    () => {
+/* =========================================================
+   THEME BUTTON
+========================================================= */
 
-        document.body.classList.toggle(
-            'light'
-        );
+if (modeButton) {
 
 
-        const isLight =
-            document.body.classList.contains(
-                'light'
+    modeButton.addEventListener(
+        "click",
+        function () {
+
+
+            document.body.classList.toggle(
+                "light"
             );
 
 
-        localStorage.setItem(
-            'edge-links-theme',
-            isLight
-                ? 'light'
-                : 'dark'
-        );
+            const isLight =
+                document.body.classList.contains(
+                    "light"
+                );
 
 
-        updateThemeIcon();
+            try {
 
-    }
-);
+                localStorage.setItem(
+                    "edge-links-theme",
+                    isLight
+                        ? "light"
+                        : "dark"
+                );
+
+            } catch (error) {}
+
+
+            updateThemeIcon();
+
+        }
+    );
+
+}
 
 
 /* =========================================================
@@ -3125,50 +3298,115 @@ modeButton.addEventListener(
 
 const telegramPopup =
     document.getElementById(
-        'telegram-popup'
+        "telegram-popup"
     );
+
 
 const popupClose =
     document.getElementById(
-        'popupClose'
+        "popupClose"
     );
+
+
+let popupShown = false;
 
 
 function showTelegramPopup() {
 
-    setTimeout(() => {
 
-        telegramPopup.classList.add(
-            'show'
-        );
+    if (
+        popupShown ||
+        !telegramPopup
+    ) {
 
-    }, 900);
+        return;
 
-}
+    }
 
 
-function closeTelegramPopup() {
+    popupShown = true;
 
-    telegramPopup.classList.remove(
-        'show'
+
+    setTimeout(
+        function () {
+
+            telegramPopup.classList.add(
+                "show"
+            );
+
+        },
+        400
     );
 
 }
 
 
-popupClose.addEventListener(
-    'click',
-    closeTelegramPopup
-);
+/* =========================================================
+   CLOSE POPUP
+========================================================= */
+
+function closeTelegramPopup() {
 
 
-telegramPopup.addEventListener(
-    'click',
-    event => {
+    if (!telegramPopup) {
+
+        return;
+
+    }
+
+
+    telegramPopup.classList.remove(
+        "show"
+    );
+
+}
+
+
+if (popupClose) {
+
+
+    popupClose.addEventListener(
+        "click",
+        closeTelegramPopup
+    );
+
+}
+
+
+if (telegramPopup) {
+
+
+    telegramPopup.addEventListener(
+        "click",
+        function (event) {
+
+
+            if (
+                event.target ===
+                telegramPopup
+            ) {
+
+                closeTelegramPopup();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
 
         if (
-            event.target ===
-            telegramPopup
+            event.key === "Escape"
         ) {
 
             closeTelegramPopup();
@@ -3180,36 +3418,29 @@ telegramPopup.addEventListener(
 
 
 /* =========================================================
-   ESC KEY
+   START APP
 ========================================================= */
 
-document.addEventListener(
-    'keydown',
-    event => {
-
-        if (
-            event.key === 'Escape'
-        ) {
-
-            closeTelegramPopup();
-
-        }
-
-    }
-);
+if (
+    document.readyState ===
+    "loading"
+) {
 
 
-/* =========================================================
-   START
-========================================================= */
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeApp
+    );
 
-document.addEventListener(
-    'DOMContentLoaded',
-    initializeApp
-);
+
+} else {
+
+
+    initializeApp();
+
+}
 
 </script>
-
 
 </body>
 </html>
