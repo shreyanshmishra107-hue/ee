@@ -4,32 +4,29 @@
 
 <meta charset="UTF-8">
 <meta name="referrer" content="no-referrer">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>EDGE LINKS</title>
 
 <style>
 
 /* =========================================================
-   ROOT
+   EDGE LINKS — BROADCAST UI
 ========================================================= */
 
 :root {
-    --bg: #050609;
-    --bg2: #0a0c11;
-    --card: rgba(17, 20, 28, 0.78);
-    --card2: rgba(255,255,255,0.045);
-    --border: rgba(255,255,255,0.09);
+    --bg: #030507;
+    --panel: #090d12;
+    --panel-2: #0d1219;
 
-    --text: #ffffff;
-    --muted: #8d93a1;
+    --blue: #00a8ff;
+    --blue2: #006eff;
 
-    --accent: #7c5cff;
-    --accent2: #00d4ff;
+    --white: #f5f8fb;
+    --gray: #8994a0;
+    --line: rgba(255,255,255,.08);
 
-    --danger: #ff496c;
-
-    --radius: 24px;
+    --red: #ff3b4f;
 }
 
 
@@ -43,38 +40,26 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html,
+body {
+    min-height: 100%;
 }
 
 body {
-    min-height: 100vh;
+
     background:
-        radial-gradient(
-            circle at 15% 10%,
-            rgba(124,92,255,0.18),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(0,212,255,0.10),
-            transparent 30%
-        ),
         linear-gradient(
-            145deg,
-            #030407,
-            #07090e 45%,
-            #040509
+            180deg,
+            #020304 0%,
+            #05080c 45%,
+            #020304 100%
         );
 
-    color: var(--text);
+    color: var(--white);
+
     font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
         Arial,
+        Helvetica,
         sans-serif;
 
     overflow-x: hidden;
@@ -82,31 +67,57 @@ body {
 
 
 /* =========================================================
-   BACKGROUND EFFECT
+   BACKGROUND GRID
 ========================================================= */
 
 body::before {
+
     content: "";
+
     position: fixed;
 
-    width: 500px;
-    height: 500px;
+    inset: 0;
 
-    left: 50%;
-    top: 35%;
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.018) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.018) 1px,
+            transparent 1px
+        );
 
-    transform: translate(-50%, -50%);
+    background-size: 40px 40px;
+
+    pointer-events: none;
+
+    z-index: -2;
+}
+
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 600px;
+    height: 600px;
+
+    right: -300px;
+    top: -250px;
 
     background:
         radial-gradient(
             circle,
-            rgba(124,92,255,0.08),
-            transparent 65%
+            rgba(0,168,255,.12),
+            transparent 68%
         );
 
-    filter: blur(30px);
-
     pointer-events: none;
+
     z-index: -1;
 }
 
@@ -116,135 +127,172 @@ body::before {
 ========================================================= */
 
 #loading-screen {
+
     position: fixed;
 
     inset: 0;
 
+    z-index: 99999;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    background:
-        radial-gradient(
-            circle at center,
-            #10121b,
-            #030407 70%
-        );
-
-    z-index: 9999;
+    background: #020304;
 
     transition:
-        opacity .6s ease,
-        visibility .6s ease;
+        opacity .5s ease,
+        visibility .5s ease;
 }
 
 
-.loader-box {
+.boot {
+
+    width: 280px;
+
     text-align: center;
 }
 
 
-.loader-logo {
-    width: 72px;
-    height: 72px;
+.boot-mark {
 
-    border-radius: 22px;
+    position: relative;
+
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 22px;
+
+    border:
+        2px solid
+        var(--blue);
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    margin: auto auto 22px;
+    font-size: 18px;
 
-    font-size: 25px;
     font-weight: 900;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--accent),
-            var(--accent2)
-        );
+    letter-spacing: 2px;
+
+    color: var(--blue);
 
     box-shadow:
-        0 0 50px rgba(124,92,255,.35);
+        0 0 25px rgba(0,168,255,.22);
 
     animation:
-        logoPulse 1.8s infinite ease-in-out;
+        bootPulse 1.3s infinite;
 }
 
 
-.loader-title {
-    font-size: 21px;
-    font-weight: 800;
-    letter-spacing: 1px;
-}
+.boot-mark::before,
+.boot-mark::after {
 
-
-.loader-subtitle {
-    margin-top: 8px;
-
-    color: var(--muted);
-
-    font-size: 13px;
-}
-
-
-.loader-line {
-    width: 130px;
-    height: 3px;
-
-    margin: 22px auto 0;
-
-    border-radius: 50px;
-
-    overflow: hidden;
-
-    background: rgba(255,255,255,.08);
-}
-
-
-.loader-line::after {
     content: "";
 
-    display: block;
+    position: absolute;
+
+    background: var(--blue);
+}
+
+
+.boot-mark::before {
+
+    width: 18px;
+    height: 2px;
+
+    left: -10px;
+    top: -2px;
+}
+
+
+.boot-mark::after {
+
+    width: 18px;
+    height: 2px;
+
+    right: -10px;
+    bottom: -2px;
+}
+
+
+.boot-title {
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+
+.boot-status {
+
+    margin-top: 9px;
+
+    color: #68737e;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+}
+
+
+.boot-bar {
+
+    position: relative;
+
+    height: 2px;
+
+    margin-top: 22px;
+
+    background: #151a20;
+
+    overflow: hidden;
+}
+
+
+.boot-bar::after {
+
+    content: "";
+
+    position: absolute;
 
     width: 45%;
     height: 100%;
 
-    background:
-        linear-gradient(
-            90deg,
-            var(--accent),
-            var(--accent2)
-        );
+    left: -45%;
+
+    background: var(--blue);
+
+    box-shadow:
+        0 0 12px var(--blue);
 
     animation:
-        loading 1.2s infinite ease-in-out;
+        bootLoad 1.2s infinite;
 }
 
 
-@keyframes logoPulse {
+@keyframes bootLoad {
 
-    0%,100% {
-        transform: scale(1);
+    to {
+        left: 100%;
     }
+
+}
+
+
+@keyframes bootPulse {
 
     50% {
-        transform: scale(1.07);
-    }
-
-}
-
-
-@keyframes loading {
-
-    0% {
-        transform: translateX(-150%);
-    }
-
-    100% {
-        transform: translateX(320%);
+        box-shadow:
+            0 0 38px rgba(0,168,255,.4);
     }
 
 }
@@ -256,39 +304,70 @@ body::before {
 
 #main-content {
 
-    max-width: 1180px;
+    width: min(
+        1180px,
+        calc(100% - 28px)
+    );
 
     margin: auto;
 
     padding:
-        22px
         18px
-        60px;
+        0
+        50px;
 
     opacity: 0;
+
     visibility: hidden;
 
     transition:
-        opacity .6s ease;
+        opacity .5s ease;
 }
 
 
 /* =========================================================
-   TOP NAV
+   BROADCAST HEADER
 ========================================================= */
 
-.topbar {
+.broadcast-header {
+
+    height: 66px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
-    margin-bottom: 25px;
+    border-bottom:
+        1px solid var(--line);
+
+    position: relative;
 }
 
 
-.brand {
+.broadcast-header::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -1px;
+
+    width: 90px;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            transparent
+        );
+}
+
+
+.edge-brand {
 
     display: flex;
 
@@ -298,53 +377,67 @@ body::before {
 }
 
 
-.brand-logo {
+.edge-symbol {
 
-    width: 46px;
-    height: 46px;
+    width: 40px;
+    height: 40px;
 
-    border-radius: 15px;
+    background: var(--blue);
+
+    color: #00101c;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    font-weight: 950;
-    font-size: 17px;
+    font-size: 13px;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--accent),
-            var(--accent2)
-        );
+    font-weight: 1000;
+
+    transform:
+        skewX(-12deg);
 
     box-shadow:
-        0 8px 35px rgba(124,92,255,.25);
+        4px 4px 0 #005c91;
 }
 
 
-.brand-info h1 {
+.edge-name {
 
-    font-size: 18px;
+    font-size: 16px;
 
-    font-weight: 900;
+    font-weight: 950;
 
-    letter-spacing: .4px;
+    letter-spacing: 2px;
 }
 
 
-.brand-info p {
-
-    color: var(--muted);
-
-    font-size: 11px;
+.edge-sub {
 
     margin-top: 3px;
+
+    color: #68737d;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
 }
 
 
-.live-pill {
+.header-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+}
+
+
+.signal {
 
     display: flex;
 
@@ -352,273 +445,282 @@ body::before {
 
     gap: 7px;
 
-    padding:
-        8px
-        12px;
+    color: #6f7b86;
 
-    border-radius: 50px;
+    font-size: 9px;
 
-    background:
-        rgba(255,73,108,.08);
+    letter-spacing: 1.5px;
 
-    border:
-        1px solid rgba(255,73,108,.16);
-
-    color:
-        #ff6c88;
-
-    font-size: 11px;
-
-    font-weight: 800;
-
-    letter-spacing: .7px;
+    text-transform: uppercase;
 }
 
 
-.live-dot {
+.signal-dot {
 
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
+
+    background: #28df87;
 
     border-radius: 50%;
 
-    background: #ff496c;
-
     box-shadow:
-        0 0 12px #ff496c;
-
-    animation:
-        livePulse 1.4s infinite;
+        0 0 10px #28df87;
 }
 
 
-@keyframes livePulse {
+.channel-link {
 
-    0%,100% {
-        opacity: 1;
-    }
+    color: var(--blue);
 
-    50% {
-        opacity: .35;
-    }
+    text-decoration: none;
 
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    border:
+        1px solid
+        rgba(0,168,255,.25);
+
+    padding:
+        9px
+        12px;
+
+    transition: .2s;
 }
 
 
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero {
-
-    text-align: center;
-
-    margin:
-        35px
-        0
-        28px;
-}
-
-
-.hero h2 {
-
-    font-size:
-        clamp(28px, 5vw, 48px);
-
-    line-height: 1.08;
-
-    font-weight: 950;
-
-    letter-spacing: -1.7px;
+.channel-link:hover {
 
     background:
-        linear-gradient(
-            100deg,
-            #ffffff 15%,
-            #bdb4ff 50%,
-            #71e8ff 85%
-        );
+        rgba(0,168,255,.1);
 
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
-}
-
-
-.hero p {
-
-    max-width: 600px;
-
-    margin:
-        13px
-        auto
-        0;
-
-    color: var(--muted);
-
-    font-size: 14px;
-
-    line-height: 1.7;
 }
 
 
 /* =========================================================
-   PLAYER CARD
+   TITLE STRIP
 ========================================================= */
 
-.player-card {
+.title-strip {
+
+    margin:
+        32px
+        0
+        20px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.title-left {
 
     position: relative;
 
-    overflow: hidden;
-
-    border-radius: var(--radius);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.065),
-            rgba(255,255,255,.018)
-        );
-
-    border:
-        1px solid var(--border);
-
-    box-shadow:
-        0 30px 100px rgba(0,0,0,.45);
-
-    backdrop-filter:
-        blur(25px);
-
-    -webkit-backdrop-filter:
-        blur(25px);
+    padding-left: 14px;
 }
 
 
-.player-card::before {
+.title-left::before {
 
     content: "";
 
     position: absolute;
 
-    left: 15%;
-    right: 15%;
-    top: -100px;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
 
-    height: 170px;
+    width: 3px;
 
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(124,92,255,.22),
-            transparent 70%
-        );
+    background: var(--blue);
+}
 
-    filter: blur(20px);
 
-    pointer-events: none;
+.title-kicker {
+
+    color: var(--blue);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 7px;
+}
+
+
+.title-left h1 {
+
+    font-size:
+        clamp(27px, 5vw, 45px);
+
+    line-height: 1;
+
+    letter-spacing: -1.5px;
+
+    font-weight: 950;
+
+    text-transform: uppercase;
+}
+
+
+.title-right {
+
+    color: #59646f;
+
+    font-size: 9px;
+
+    line-height: 1.6;
+
+    text-align: right;
+
+    letter-spacing: 1px;
 }
 
 
 /* =========================================================
-   PLAYER HEADER
+   PLAYER WRAPPER
 ========================================================= */
 
-.player-header {
+.player-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        235px;
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   PLAYER
+========================================================= */
+
+.player-frame {
+
+    background: #050709;
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
 
     position: relative;
 
-    min-height: 66px;
+    overflow: hidden;
+}
+
+
+/* top blue broadcast line */
+
+.player-frame::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            #006eff 50%,
+            transparent
+        );
+
+    z-index: 5;
+}
+
+
+.player-top {
+
+    height: 48px;
+
+    padding:
+        0
+        15px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
-    padding:
-        14px
-        18px;
+    background: #080b0f;
 
     border-bottom:
-        1px solid rgba(255,255,255,.06);
+        1px solid var(--line);
 }
 
 
-.stream-info {
+.now {
 
-    min-width: 0;
-}
+    display: flex;
 
+    align-items: center;
 
-.stream-label-small {
+    gap: 9px;
 
-    color: var(--muted);
+    font-size: 9px;
 
-    font-size: 10px;
-
-    text-transform: uppercase;
+    font-weight: 900;
 
     letter-spacing: 1.5px;
-
-    font-weight: 800;
 }
 
 
-#streamLabel {
+.now span {
 
-    margin-top: 4px;
-
-    font-size: 15px;
-
-    font-weight: 850;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
+    color: var(--blue);
 }
 
 
-.quality-badge {
+.live-tag {
 
     padding:
-        7px
-        10px;
+        5px
+        8px;
 
-    border-radius: 9px;
-
-    background:
-        rgba(124,92,255,.11);
+    color: #ff6575;
 
     border:
-        1px solid rgba(124,92,255,.2);
+        1px solid
+        rgba(255,59,79,.25);
 
-    color: #b9acff;
+    font-size: 8px;
 
-    font-size: 10px;
+    font-weight: 900;
 
-    font-weight: 800;
+    letter-spacing: 1px;
 }
 
-
-/* =========================================================
-   VIDEO AREA
-========================================================= */
 
 #portalDisplay {
 
     position: relative;
 
-    width: 100%;
-
     aspect-ratio: 16 / 9;
 
-    min-height: 250px;
-
-    background:
-        #000;
+    background: #000;
 
     overflow: hidden;
 }
@@ -637,10 +739,6 @@ body::before {
 }
 
 
-/* =========================================================
-   PLAYER EMPTY STATUS
-========================================================= */
-
 #portalStatusText {
 
     position: absolute;
@@ -649,244 +747,410 @@ body::before {
 
     display: flex;
 
+    align-items: center;
+    justify-content: center;
+
     flex-direction: column;
 
-    align-items: center;
-    justify-content: center;
-
     text-align: center;
-
-    padding: 30px;
 }
 
 
-.status-icon {
+.wait-ring {
 
-    width: 60px;
-    height: 60px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 18px;
-
-    margin-bottom: 18px;
-
-    background:
-        rgba(124,92,255,.1);
+    width: 48px;
+    height: 48px;
 
     border:
-        1px solid rgba(124,92,255,.2);
+        2px solid
+        #1a222b;
 
-    color: #a99cff;
-
-    font-size: 22px;
-}
-
-
-.status-title {
-
-    font-size: 16px;
-
-    font-weight: 850;
-}
-
-
-.status-description {
-
-    margin-top: 7px;
-
-    max-width: 330px;
-
-    color: var(--muted);
-
-    font-size: 12px;
-
-    line-height: 1.6;
-}
-
-
-/* =========================================================
-   PLAYER FOOTER
-========================================================= */
-
-.player-footer {
-
-    display: flex;
-
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 15px;
-
-    padding:
-        14px
-        17px;
-}
-
-
-.footer-status {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    color: #9ea4b2;
-
-    font-size: 11px;
-}
-
-
-.status-green {
-
-    width: 7px;
-    height: 7px;
+    border-top-color:
+        var(--blue);
 
     border-radius: 50%;
 
-    background: #38e89a;
+    animation:
+        spin 1s linear infinite;
 
-    box-shadow:
-        0 0 10px rgba(56,232,154,.7);
+    margin-bottom: 17px;
 }
 
 
-.telegram-button {
+@keyframes spin {
 
-    display: inline-flex;
+    to {
+        transform: rotate(360deg);
+    }
 
-    align-items: center;
-    justify-content: center;
+}
 
-    gap: 9px;
 
-    min-height: 40px;
-
-    padding:
-        0
-        16px;
-
-    border-radius: 12px;
-
-    text-decoration: none;
-
-    color: white;
+.wait-title {
 
     font-size: 12px;
 
-    font-weight: 800;
+    font-weight: 900;
 
-    background:
-        linear-gradient(
-            135deg,
-            #229ed9,
-            #168dcc
-        );
+    letter-spacing: 1px;
 
-    box-shadow:
-        0 8px 25px rgba(34,158,217,.18);
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease;
+    text-transform: uppercase;
 }
 
 
-.telegram-button:hover {
+.wait-text {
 
-    transform: translateY(-2px);
+    color: #59646f;
 
-    box-shadow:
-        0 12px 30px rgba(34,158,217,.28);
-}
+    font-size: 9px;
 
+    margin-top: 7px;
 
-.telegram-icon {
-
-    width: 18px;
-    height: 18px;
-
-    object-fit: contain;
+    letter-spacing: .5px;
 }
 
 
 /* =========================================================
-   INFO CARDS
+   PLAYER BOTTOM
 ========================================================= */
 
-.info-grid {
+.player-bottom {
 
-    display: grid;
+    min-height: 55px;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    display: flex;
 
-    gap: 13px;
+    align-items: center;
 
-    margin-top: 18px;
+    justify-content: space-between;
+
+    padding:
+        10px
+        14px;
+
+    background:
+        #070a0e;
+
+    border-top:
+        1px solid var(--line);
 }
 
 
-.info-card {
+.stream-name-wrap {
 
-    padding: 18px;
+    min-width: 0;
+}
 
-    border-radius: 18px;
+
+.stream-caption {
+
+    color: #56616c;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+#streamLabel {
+
+    margin-top: 4px;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.player-meta {
+
+    display: flex;
+
+    gap: 6px;
+}
+
+
+.meta-box {
+
+    padding:
+        7px
+        9px;
 
     background:
-        rgba(255,255,255,.035);
+        #0d131a;
 
     border:
-        1px solid rgba(255,255,255,.065);
+        1px solid
+        rgba(255,255,255,.06);
 
-    transition:
-        transform .25s ease,
-        background .25s ease;
+    color: #73808c;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+
+    font-weight: 800;
 }
 
 
-.info-card:hover {
+/* =========================================================
+   SIDE PANEL
+========================================================= */
 
-    transform: translateY(-3px);
+.side-panel {
 
     background:
-        rgba(255,255,255,.055);
+        #080b0f;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 }
 
 
-.info-number {
+.side-title {
 
-    font-size: 18px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+        0
+        15px;
+
+    border-bottom:
+        1px solid var(--line);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+.side-title span {
+
+    width: 6px;
+    height: 6px;
+
+    margin-right: 8px;
+
+    background: var(--blue);
+
+    box-shadow:
+        0 0 9px var(--blue);
+}
+
+
+.side-content {
+
+    padding: 14px;
+}
+
+
+.stat {
+
+    padding:
+        13px
+        0;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.05);
+}
+
+
+.stat:last-child {
+
+    border-bottom: 0;
+}
+
+
+.stat-label {
+
+    color: #53606c;
+
+    font-size: 7px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+
+.stat-value {
+
+    margin-top: 5px;
+
+    font-size: 11px;
 
     font-weight: 900;
 }
 
 
-.info-title {
+.stat-value.blue {
 
-    margin-top: 5px;
-
-    color: #dfe2ea;
-
-    font-size: 12px;
-
-    font-weight: 700;
+    color: var(--blue);
 }
 
 
-.info-desc {
+.join-box {
 
-    margin-top: 5px;
+    margin-top: 15px;
 
-    color: var(--muted);
+    padding: 14px;
 
-    font-size: 10px;
+    background:
+        linear-gradient(
+            135deg,
+            #07131c,
+            #071018
+        );
 
-    line-height: 1.5;
+    border:
+        1px solid
+        rgba(0,168,255,.16);
+}
+
+
+.join-box p {
+
+    color: #65717c;
+
+    font-size: 8px;
+
+    line-height: 1.6;
+
+    margin-bottom: 12px;
+}
+
+
+.join-button {
+
+    display: block;
+
+    text-align: center;
+
+    padding: 11px 8px;
+
+    background: var(--blue);
+
+    color: #00101b;
+
+    text-decoration: none;
+
+    font-size: 8px;
+
+    font-weight: 950;
+
+    letter-spacing: 1.2px;
+
+    text-transform: uppercase;
+
+    transition: .2s;
+}
+
+
+.join-button:hover {
+
+    background: #39bcff;
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   TICKER
+========================================================= */
+
+.ticker {
+
+    margin-top: 14px;
+
+    height: 34px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        #080b0f;
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+}
+
+
+.ticker-label {
+
+    height: 100%;
+
+    padding:
+        0
+        14px;
+
+    display: flex;
+
+    align-items: center;
+
+    background: var(--blue);
+
+    color: #00101a;
+
+    font-size: 8px;
+
+    font-weight: 950;
+
+    letter-spacing: 1px;
+
+    flex-shrink: 0;
+}
+
+
+.ticker-text {
+
+    padding-left: 18px;
+
+    color: #64707b;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+
+    animation:
+        tickerMove 18s linear infinite;
+}
+
+
+@keyframes tickerMove {
+
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-120%);
+    }
+
 }
 
 
@@ -894,27 +1158,32 @@ body::before {
    FOOTER
 ========================================================= */
 
-.site-footer {
+footer {
 
-    text-align: center;
+    margin-top: 32px;
 
-    padding:
-        35px
-        10px
-        0;
+    padding-top: 18px;
 
-    color: #5f6572;
+    border-top:
+        1px solid var(--line);
 
-    font-size: 10px;
+    display: flex;
 
-    line-height: 1.7;
+    justify-content: space-between;
+
+    color: #4d5863;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
 }
 
 
-.site-footer strong {
+footer strong {
 
-    color: #8f95a3;
-
+    color: #74818c;
 }
 
 
@@ -930,10 +1199,10 @@ body::before {
 
     display: flex;
 
-    flex-direction: column;
-
     align-items: center;
     justify-content: center;
+
+    flex-direction: column;
 
     text-align: center;
 
@@ -941,51 +1210,41 @@ body::before {
 }
 
 
-.error-icon {
+.error-code {
 
-    width: 64px;
-    height: 64px;
+    color: var(--red);
 
-    display: flex;
+    font-size: 9px;
 
-    align-items: center;
-    justify-content: center;
+    font-weight: 900;
 
-    border-radius: 20px;
+    letter-spacing: 3px;
 
-    margin-bottom: 17px;
-
-    color: #ff6a86;
-
-    background:
-        rgba(255,73,108,.08);
-
-    border:
-        1px solid rgba(255,73,108,.16);
-
-    font-size: 25px;
+    margin-bottom: 12px;
 }
 
 
 .error-message h2 {
 
-    font-size: 18px;
+    font-size: 17px;
 
-    font-weight: 900;
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
 }
 
 
 .error-message p {
 
-    max-width: 360px;
+    max-width: 350px;
 
     margin-top: 8px;
 
-    color: var(--muted);
+    color: #59646f;
 
-    font-size: 12px;
+    font-size: 9px;
 
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 
@@ -993,166 +1252,186 @@ body::before {
    MOBILE
 ========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 
     #main-content {
 
-        padding:
-            14px
-            10px
-            45px;
+        width:
+            calc(100% - 18px);
+
+        padding-top: 10px;
     }
 
 
-    .topbar {
+    .broadcast-header {
 
-        margin-bottom: 15px;
+        height: 58px;
     }
 
 
-    .brand-logo {
+    .edge-symbol {
 
-        width: 42px;
-        height: 42px;
+        width: 35px;
+        height: 35px;
 
-        border-radius: 13px;
+        font-size: 11px;
     }
 
 
-    .brand-info h1 {
-
-        font-size: 16px;
-    }
-
-
-    .live-pill {
-
-        padding:
-            7px
-            9px;
-
-        font-size: 9px;
-    }
-
-
-    .hero {
-
-        margin:
-            28px
-            0
-            20px;
-    }
-
-
-    .hero h2 {
-
-        font-size: 31px;
-
-        letter-spacing: -1px;
-    }
-
-
-    .hero p {
-
-        font-size: 12px;
-
-        padding:
-            0
-            12px;
-    }
-
-
-    .player-card {
-
-        border-radius: 19px;
-    }
-
-
-    .player-header {
-
-        min-height: 58px;
-
-        padding:
-            11px
-            13px;
-    }
-
-
-    #streamLabel {
+    .edge-name {
 
         font-size: 13px;
     }
 
 
-    .quality-badge {
+    .edge-sub {
 
-        font-size: 8px;
-
-        padding:
-            6px
-            8px;
+        font-size: 7px;
     }
 
 
-    #portalDisplay {
-
-        aspect-ratio: 16 / 10;
-
-        min-height: 210px;
-    }
-
-
-    .player-footer {
-
-        flex-direction: column;
-
-        align-items: stretch;
-    }
-
-
-    .telegram-button {
-
-        width: 100%;
-    }
-
-
-    .info-grid {
-
-        grid-template-columns: 1fr;
-
-        gap: 9px;
-    }
-
-
-    .info-card {
-
-        padding: 15px;
-    }
-
-}
-
-
-/* =========================================================
-   SMALL DEVICES
-========================================================= */
-
-@media (max-width: 380px) {
-
-    .brand-info p {
+    .header-right .signal {
 
         display: none;
     }
 
 
-    .hero h2 {
+    .channel-link {
 
-        font-size: 27px;
+        padding:
+            8px
+            9px;
+
+        font-size: 7px;
+    }
+
+
+    .title-strip {
+
+        margin:
+            25px
+            0
+            16px;
+    }
+
+
+    .title-left h1 {
+
+        font-size: 28px;
+    }
+
+
+    .title-right {
+
+        display: none;
+    }
+
+
+    .player-layout {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .side-panel {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr
+            1fr;
+    }
+
+
+    .side-title {
+
+        grid-column:
+            1 / -1;
+    }
+
+
+    .side-content {
+
+        grid-column:
+            1 / -1;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 10px;
+    }
+
+
+    .stat {
+
+        border: 0;
+    }
+
+
+    .join-box {
+
+        grid-column:
+            1 / -1;
+    }
+
+
+    .player-meta {
+
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .title-left h1 {
+
+        font-size: 25px;
+    }
+
+
+    .player-top {
+
+        height: 43px;
+
+        padding:
+            0
+            10px;
     }
 
 
     #portalDisplay {
 
-        min-height: 190px;
+        aspect-ratio:
+            16 / 10;
+    }
+
+
+    .player-bottom {
+
+        padding:
+            9px
+            10px;
+    }
+
+
+    .side-content {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    footer {
+
+        flex-direction: column;
+
+        gap: 8px;
+
+        text-align: center;
     }
 
 }
@@ -1166,26 +1445,26 @@ body::before {
 
 
 <!-- =======================================================
-     LOADING SCREEN
+     BOOT SCREEN
 ======================================================= -->
 
 <div id="loading-screen">
 
-    <div class="loader-box">
+    <div class="boot">
 
-        <div class="loader-logo">
+        <div class="boot-mark">
             EL
         </div>
 
-        <div class="loader-title">
+        <div class="boot-title">
             EDGE LINKS
         </div>
 
-        <div class="loader-subtitle">
-            Preparing your stream...
+        <div class="boot-status">
+            Initializing broadcast
         </div>
 
-        <div class="loader-line"></div>
+        <div class="boot-bar"></div>
 
     </div>
 
@@ -1193,42 +1472,57 @@ body::before {
 
 
 <!-- =======================================================
-     MAIN CONTENT
+     MAIN
 ======================================================= -->
 
 <main id="main-content">
 
 
-    <!-- TOP BAR -->
+    <!-- HEADER -->
 
-    <header class="topbar">
+    <header class="broadcast-header">
 
-        <div class="brand">
+        <div class="edge-brand">
 
-            <div class="brand-logo">
+            <div class="edge-symbol">
                 EL
             </div>
 
-            <div class="brand-info">
+            <div>
 
-                <h1>
+                <div class="edge-name">
                     EDGE LINKS
-                </h1>
+                </div>
 
-                <p>
-                    Premium Streaming Portal
-                </p>
+                <div class="edge-sub">
+                    Broadcast Network
+                </div>
 
             </div>
 
         </div>
 
 
-        <div class="live-pill">
+        <div class="header-right">
 
-            <span class="live-dot"></span>
+            <div class="signal">
 
-            LIVE PORTAL
+                <span class="signal-dot"></span>
+
+                Signal Online
+
+            </div>
+
+
+            <a
+                href="https://t.me/+7vIted3ey1cxNmE1"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="channel-link">
+
+                TELEGRAM ↗
+
+            </a>
 
         </div>
 
@@ -1236,117 +1530,27 @@ body::before {
 
 
 
-    <!-- HERO -->
+    <!-- TITLE -->
 
-    <section class="hero">
+    <section class="title-strip">
 
-        <h2>
-            Your Stream.<br>
-            Your Edge.
-        </h2>
+        <div class="title-left">
 
-        <p>
-            Enjoy a clean, fast and immersive streaming
-            experience powered by EDGE LINKS.
-        </p>
-
-    </section>
-
-
-
-    <!-- PLAYER -->
-
-    <section class="player-card">
-
-
-        <!-- PLAYER HEADER -->
-
-        <div class="player-header">
-
-            <div class="stream-info">
-
-                <div class="stream-label-small">
-                    NOW PLAYING
-                </div>
-
-                <div id="streamLabel">
-                    Loading Stream...
-                </div>
-
+            <div class="title-kicker">
+                Live Transmission
             </div>
 
-
-            <div class="quality-badge">
-                HD STREAM
-            </div>
+            <h1>
+                Watch Now
+            </h1>
 
         </div>
 
 
+        <div class="title-right">
 
-        <!-- PLAYER AREA -->
-
-        <div id="portalDisplay">
-
-
-            <div id="portalStatusText">
-
-                <div class="status-icon">
-                    ▶
-                </div>
-
-                <div class="status-title">
-                    Preparing Stream
-                </div>
-
-                <div class="status-description">
-                    Please wait while the stream is being
-                    connected to the player.
-                </div>
-
-            </div>
-
-
-            <iframe
-                id="videoPlayer"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowfullscreen
-                scrolling="no">
-            </iframe>
-
-
-        </div>
-
-
-
-        <!-- PLAYER FOOTER -->
-
-        <div class="player-footer">
-
-
-            <div class="footer-status">
-
-                <span class="status-green"></span>
-
-                Stream connection ready
-
-            </div>
-
-
-            <a
-                class="telegram-button"
-                href="https://t.me/+7vIted3ey1cxNmE1"
-                target="_blank"
-                rel="noopener noreferrer">
-
-                <img
-                    class="telegram-icon"
-                    src="https://www.freepnglogos.com/uploads/telegram-logo-png-0.png"
-                    alt="Telegram">
-
-                Join EDGE LINKS
-
-            </a>
+            EDGE LINKS / LIVE<br>
+            PREMIUM STREAM ACCESS
 
         </div>
 
@@ -1354,82 +1558,213 @@ body::before {
 
 
 
-    <!-- INFO CARDS -->
+    <!-- PLAYER + SIDE PANEL -->
 
-    <section class="info-grid">
+    <section class="player-layout">
 
 
-        <div class="info-card">
+        <!-- PLAYER -->
 
-            <div class="info-number">
-                ⚡
+        <div class="player-frame">
+
+
+            <div class="player-top">
+
+                <div class="now">
+
+                    <span>●</span>
+
+                    LIVE FEED
+
+                </div>
+
+
+                <div class="live-tag">
+                    LIVE
+                </div>
+
             </div>
 
-            <div class="info-title">
-                Fast Streaming
+
+            <div id="portalDisplay">
+
+
+                <div id="portalStatusText">
+
+                    <div class="wait-ring"></div>
+
+                    <div class="wait-title">
+                        Connecting to stream
+                    </div>
+
+                    <div class="wait-text">
+                        Establishing secure playback session
+                    </div>
+
+                </div>
+
+
+                <iframe
+                    id="videoPlayer"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen
+                    scrolling="no">
+                </iframe>
+
+
             </div>
 
-            <div class="info-desc">
-                Lightweight interface designed for
-                quick access to your stream.
+
+            <div class="player-bottom">
+
+
+                <div class="stream-name-wrap">
+
+                    <div class="stream-caption">
+                        Current Transmission
+                    </div>
+
+                    <div id="streamLabel">
+                        Loading...
+                    </div>
+
+                </div>
+
+
+                <div class="player-meta">
+
+                    <div class="meta-box">
+                        HD
+                    </div>
+
+                    <div class="meta-box">
+                        LIVE
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
 
-        <div class="info-card">
 
-            <div class="info-number">
-                ◉
+        <!-- SIDE INFORMATION -->
+
+        <aside class="side-panel">
+
+
+            <div class="side-title">
+
+                <span></span>
+
+                Broadcast Info
+
             </div>
 
-            <div class="info-title">
-                Mobile Ready
+
+            <div class="side-content">
+
+
+                <div class="stat">
+
+                    <div class="stat-label">
+                        Network
+                    </div>
+
+                    <div class="stat-value">
+                        EDGE LINKS
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-label">
+                        Status
+                    </div>
+
+                    <div class="stat-value blue">
+                        ONLINE
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-label">
+                        Delivery
+                    </div>
+
+                    <div class="stat-value">
+                        LIVE FEED
+                    </div>
+
+                </div>
+
+
+                <div class="join-box">
+
+                    <p>
+                        Get stream updates, links and
+                        announcements through the
+                        official EDGE LINKS channel.
+                    </p>
+
+
+                    <a
+                        href="https://t.me/+7vIted3ey1cxNmE1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="join-button">
+
+                        Join Channel
+
+                    </a>
+
+                </div>
+
+
             </div>
 
-            <div class="info-desc">
-                Fully responsive interface built for
-                phones, tablets and desktops.
-            </div>
-
-        </div>
-
-
-        <div class="info-card">
-
-            <div class="info-number">
-                HD
-            </div>
-
-            <div class="info-title">
-                Quality Experience
-            </div>
-
-            <div class="info-desc">
-                Clean player presentation with a
-                distraction-free viewing experience.
-            </div>
-
-        </div>
-
+        </aside>
 
     </section>
+
+
+
+    <!-- TICKER -->
+
+    <div class="ticker">
+
+        <div class="ticker-label">
+            EDGE
+        </div>
+
+        <div class="ticker-text">
+            WELCOME TO EDGE LINKS • LIVE STREAMING PORTAL •
+            KEEP THIS PAGE OPEN FOR THE BEST VIEWING EXPERIENCE •
+            BROADCAST ONLINE •
+        </div>
+
+    </div>
 
 
 
     <!-- FOOTER -->
 
-    <footer class="site-footer">
+    <footer>
 
-        <strong>EDGE LINKS</strong>
+        <span>
+            <strong>EDGE LINKS</strong>
+            / Broadcast Interface
+        </span>
 
-        <br>
-
-        Premium streaming interface
-
-        <br><br>
-
-        © 2026 EDGE LINKS. All rights reserved.
+        <span>
+            System Online • 2026
+        </span>
 
     </footer>
 
@@ -1460,9 +1795,9 @@ async function initializeApp() {
     try {
 
 
-        /* ==============================================
-           FETCH STREAM JSON
-        ============================================== */
+        /* =================================================
+           FETCH JSON
+        ================================================= */
 
         const response =
             await fetch(
@@ -1486,9 +1821,9 @@ async function initializeApp() {
             await response.json();
 
 
-        /* ==============================================
-           GET ID FROM URL
-        ============================================== */
+        /* =================================================
+           GET URL ID
+        ================================================= */
 
         const urlParams =
             new URLSearchParams(
@@ -1500,9 +1835,9 @@ async function initializeApp() {
             urlParams.get('id');
 
 
-        /* ==============================================
+        /* =================================================
            FIND STREAM
-        ============================================== */
+        ================================================= */
 
         const streamData =
             data.iframes?.find(
@@ -1521,18 +1856,18 @@ async function initializeApp() {
         }
 
 
-        /* ==============================================
-           UPDATE TITLE
-        ============================================== */
+        /* =================================================
+           PAGE TITLE
+        ================================================= */
 
         document.title =
             streamData.name ||
             'EDGE LINKS';
 
 
-        /* ==============================================
+        /* =================================================
            LOAD STREAM
-        ============================================== */
+        ================================================= */
 
         renderIframeUI(
             streamData
@@ -1541,32 +1876,27 @@ async function initializeApp() {
 
     } catch (error) {
 
-
         console.error(
             'EDGE LINKS ERROR:',
             error
         );
 
-
         renderErrorUI();
-
 
     } finally {
 
 
-        /* ==============================================
-           REMOVE LOADING SCREEN
-        ============================================== */
+        /* =================================================
+           HIDE BOOT SCREEN
+        ================================================= */
 
         setTimeout(() => {
-
 
             loadingScreen.style.opacity =
                 '0';
 
             loadingScreen.style.visibility =
                 'hidden';
-
 
             mainContent.style.opacity =
                 '1';
@@ -1579,8 +1909,7 @@ async function initializeApp() {
 
                 loadingScreen.remove();
 
-            }, 600);
-
+            }, 550);
 
         }, 500);
 
@@ -1589,25 +1918,21 @@ async function initializeApp() {
 }
 
 
-
 /* =========================================================
    RENDER STREAM
 ========================================================= */
 
 function renderIframeUI(streamData) {
 
-
     const videoPlayer =
         document.getElementById(
             'videoPlayer'
         );
 
-
     const statusText =
         document.getElementById(
             'portalStatusText'
         );
-
 
     const streamLabel =
         document.getElementById(
@@ -1615,22 +1940,22 @@ function renderIframeUI(streamData) {
         );
 
 
+    /* =================================================
+       STREAM NAME
+    ================================================= */
+
     const streamName =
         streamData.name ||
         'LIVE STREAM';
 
 
-    /* ==============================================
-       STREAM NAME
-    ============================================== */
-
     streamLabel.textContent =
         streamName;
 
 
-    /* ==============================================
-       CHECK IFRAME
-    ============================================== */
+    /* =================================================
+       IFRAME CHECK
+    ================================================= */
 
     if (!streamData.iframeSrc) {
 
@@ -1641,45 +1966,25 @@ function renderIframeUI(streamData) {
     }
 
 
-    /* ==============================================
+    /* =================================================
        LOAD IFRAME
-    ============================================== */
+    ================================================= */
 
     videoPlayer.src =
         streamData.iframeSrc;
 
 
-    /* ==============================================
+    /* =================================================
        SHOW PLAYER
-    ============================================== */
+    ================================================= */
 
     statusText.style.display =
         'none';
 
-
     videoPlayer.style.display =
         'block';
 
-
-    /* ==============================================
-       UPDATE BRAND TITLE
-    ============================================== */
-
-    const brandTitle =
-        document.querySelector(
-            '.brand-info h1'
-        );
-
-
-    if (brandTitle) {
-
-        brandTitle.textContent =
-            'EDGE LINKS';
-
-    }
-
 }
-
 
 
 /* =========================================================
@@ -1688,9 +1993,8 @@ function renderIframeUI(streamData) {
 
 function renderErrorUI() {
 
-
     document.title =
-        'Error - EDGE LINKS';
+        'EDGE LINKS — ERROR';
 
 
     const portalDisplay =
@@ -1706,25 +2010,25 @@ function renderErrorUI() {
 
 
     streamLabel.textContent =
-        'STREAM NOT FOUND';
+        'NO SIGNAL';
 
 
     portalDisplay.innerHTML = `
 
         <div class="error-message">
 
-            <div class="error-icon">
-                !
+            <div class="error-code">
+                ERROR / 404
             </div>
 
             <h2>
-                Stream Unavailable
+                Transmission Unavailable
             </h2>
 
             <p>
                 The requested stream could not
-                be found or may currently be offline.
-                Please check the link and try again.
+                be located or is currently offline.
+                Please return later and try again.
             </p>
 
         </div>
@@ -1732,7 +2036,6 @@ function renderErrorUI() {
     `;
 
 }
-
 
 
 /* =========================================================
